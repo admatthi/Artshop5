@@ -162,7 +162,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                 if querySnapshot!.documents.count == 0{
                     var ref: DocumentReference? = nil
                     ref = db.collection("profile").addDocument(data: [
-                        "brands": ["Gucci","yellostart","popupstart"],
+                        "brands": [""],
                         "notificationEnable": true,
                         "token": fcmToken,
                         "uid":uid
