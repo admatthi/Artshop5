@@ -16,7 +16,7 @@ import Photos
 import FBSDKCoreKit
 import MBProgressHUD
 import FirebaseFirestore
-
+import FirebaseMessaging
 var didpurchase = Bool()
 var db : Firestore!
 
@@ -47,7 +47,7 @@ var ref : DatabaseReference?
 var refer = String()
 
 class ExploreViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    
+    var fcmToken:String = ""
     @IBOutlet weak var titleCollectionView: UICollectionView!
     var counter = 0
     //
@@ -69,6 +69,15 @@ class ExploreViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.titleCollectionView.reloadData()
 
         self.titleCollectionView.reloadData()
+        InstanceID.instanceID().instanceID { (result, error) in
+            if let error = error {
+                print("Error fetching remote instance ID: \(error)")
+            } else if let result = result {
+                print("Remote instance ID token: \(result.token)")
+                self.fcmToken = result.token
+                //                self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
+            }
+        }
 
     }
     

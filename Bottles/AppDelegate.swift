@@ -15,11 +15,12 @@ import Purchases
 import FBSDKCoreKit
 import AppsFlyerLib
 import IQKeyboardManagerSwift
+import FirebaseMessaging
 var slimeybool = Bool()
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate,MessagingDelegate {
     var window: UIWindow?
 
 
@@ -92,6 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         }
 
         application.registerForRemoteNotifications()
+        Messaging.messaging().delegate = self
 
         return true
     }
@@ -138,7 +140,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
            AppsFlyerLib.shared().continue(userActivity, restorationHandler: nil)
            return true
        }
-    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+    }
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+         print("Firebase registration token: \(fcmToken)")
+
+         let dataDict:[String: String] = ["token": fcmToken]
+         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+         // TODO: If necessary send token to application server.
+         // Note: This callback is fired at each app startup and whenever a new token is generated.
+     }
     func queryforpaywall() {
                 
         ref?.child("Users").observeSingleEvent(of: .value, with: { (snapshot) in
