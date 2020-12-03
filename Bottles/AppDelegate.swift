@@ -67,10 +67,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
 //                     tabBarBuyer.selectedIndex = 0
                      
                  } else {
-                     
+                    let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let vc : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "OnBoardingViewController") as! OnBoardingViewController
+                    self.window = UIWindow(frame: UIScreen.main.bounds)
+                    self.window?.rootViewController = vc
+                    
+                    self.window?.makeKeyAndVisible()
 //                     tabBarBuyer.selectedIndex = 0
                      
-                     UserDefaults.standard.set(true, forKey: "launchedBefore")
                      
                  }
                
