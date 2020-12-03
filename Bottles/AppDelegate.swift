@@ -151,16 +151,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
          let dataDict:[String: String] = ["token": fcmToken]
          NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
         
-        db.collection("profile").getDocuments() { (querySnapshot, err) in
+        db.collection("profile").whereField("uid", isEqualTo: uid).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                if querySnapshot!.documents.count > 0{
+                if querySnapshot!.documents.count == 0{
                     var ref: DocumentReference? = nil
                     ref = db.collection("profile").addDocument(data: [
                         "brands": ["Gucci","yellostart","popupstart"],
                         "notificationEnable": true,
-                        "token": fcmToken
+                        "token": fcmToken,
+                        "uid":uid
                     ]) { err in
                         if let err = err {
                             print("Error adding document: \(err)")
@@ -168,6 +169,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                             print("Document added with ID: \(ref!.documentID)")
                         }
                     }
+                }else{
+                    let updateReference = db.collection("profile").document(querySnapshot!.documents.first?.documentID ?? "")
+                    updateReference.getDocument { (document, err) in
+                        if let err = err {
+                            print(err.localizedDescription)
+                        }
+                        else {
+                            document?.reference.updateData([
+                                "token": fcmToken
+                                ])
+                        }
+                    }
+
                 }
                 for document in querySnapshot!.documents {
                     print("\(document.documentID) => \(document.data())")
