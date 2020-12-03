@@ -57,6 +57,7 @@
 		2AC321C60D251E80FB6D72FD /* Pods_Bottles_BottlesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bottles_BottlesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E508ABF2578070C009F399C /* PostDealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDealViewController.swift; sourceTree = "<group>"; };
 		4E508AC425780732009F399C /* PostDealTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDealTableViewController.swift; sourceTree = "<group>"; };
+		4EF2ACEB25795BA50076AA34 /* Drip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Drip.entitlements; sourceTree = "<group>"; };
 		52D9D6EE7435E5A944BAB19F /* Pods-Bottles.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bottles.release.xcconfig"; path = "Target Support Files/Pods-Bottles/Pods-Bottles.release.xcconfig"; sourceTree = "<group>"; };
 		5FD199BF22A7B822DDCA2AE2 /* Pods-Bottles.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bottles.debug.xcconfig"; path = "Target Support Files/Pods-Bottles/Pods-Bottles.debug.xcconfig"; sourceTree = "<group>"; };
 		60382CE3831202C2830420D4 /* Pods-BottlesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BottlesTests.debug.xcconfig"; path = "Target Support Files/Pods-BottlesTests/Pods-BottlesTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 		9DBAFB1424A0638C0025C27D /* Bottles */ = {
 			isa = PBXGroup;
 			children = (
+				4EF2ACEB25795BA50076AA34 /* Drip.entitlements */,
 				9DBAFB4524A063D90025C27D /* Main.storyboard */,
 				9D1EF6C824A44B2700C980D7 /* ArtCollectionViewCell.swift */,
 				9D0A44E324A8F9C400E3FB94 /* CategoryCollectionViewCell.swift */,
@@ -635,6 +637,7 @@
 			baseConfigurationReference = 5FD199BF22A7B822DDCA2AE2 /* Pods-Bottles.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-6";
+				CODE_SIGN_ENTITLEMENTS = Bottles/Drip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 797Q3HJ5U5;
 				ENABLE_PREVIEWS = YES;
@@ -656,6 +659,7 @@
 			baseConfigurationReference = 52D9D6EE7435E5A944BAB19F /* Pods-Bottles.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-6";
+				CODE_SIGN_ENTITLEMENTS = Bottles/Drip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 797Q3HJ5U5;
 				ENABLE_PREVIEWS = YES;
