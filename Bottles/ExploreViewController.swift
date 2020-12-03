@@ -69,15 +69,15 @@ class ExploreViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.titleCollectionView.reloadData()
 
         self.titleCollectionView.reloadData()
-        InstanceID.instanceID().instanceID { (result, error) in
-            if let error = error {
-                print("Error fetching remote instance ID: \(error)")
-            } else if let result = result {
-                print("Remote instance ID token: \(result.token)")
-                self.fcmToken = result.token
-                //                self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
-            }
-        }
+//        InstanceID.instanceID().instanceID { (result, error) in
+//            if let error = error {
+//                print("Error fetching remote instance ID: \(error)")
+//            } else if let result = result {
+//                print("Remote instance ID token: \(result.token)")
+//                self.fcmToken = result.token
+//                //                self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
+//            }
+//        }
 
     }
     
@@ -85,8 +85,7 @@ class ExploreViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref = Database.database().reference()
-        db = Firestore.firestore()
+        
 
         genres.removeAll()
         genres.append("Latest")

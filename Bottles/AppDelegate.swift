@@ -16,6 +16,7 @@ import FBSDKCoreKit
 import AppsFlyerLib
 import IQKeyboardManagerSwift
 import FirebaseMessaging
+import FirebaseFirestore
 var slimeybool = Bool()
 
 
@@ -94,7 +95,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
 
         application.registerForRemoteNotifications()
         Messaging.messaging().delegate = self
-
+        ref = Database.database().reference()
+        db = Firestore.firestore()
         return true
     }
     
@@ -148,6 +150,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
 
          let dataDict:[String: String] = ["token": fcmToken]
          NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        
+        db.collection("profile").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if querySnapshot!.documents.count > 0{
+                    var ref: DocumentReference? = nil
+                    ref = db.collection("profile").addDocument(data: [
+                        "brands": ["Gucci","yellostart","popupstart"],
+                        "notificationEnable": true,
+                        "token": fcmToken
+                    ]) { err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                        } else {
+                            print("Document added with ID: \(ref!.documentID)")
+                        }
+                    }
+                }
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
          // TODO: If necessary send token to application server.
          // Note: This callback is fired at each app startup and whenever a new token is generated.
      }
