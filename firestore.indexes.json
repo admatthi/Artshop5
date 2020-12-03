@@ -1,0 +1,47 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "latest_deals",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "website",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "created_at",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "latest_deals",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "website",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "created_at",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "latest_dealss",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "website",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "created_at",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
