@@ -1,5 +1,5 @@
 //
-//  OnBoardingViewController.swift
+//  ProfileViewController.swift
 //  Bottles
 //
 //  Created by talal ahmad on 04/12/2020.
@@ -9,20 +9,83 @@
 import UIKit
 import FirebaseFirestore
 import MBProgressHUD
+class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDataSource  {
 
-class OnBoardingViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-
-    var allBrands = ["Gucci","Dior","Versace","Off White","Supreme","Louis Vuitton","Adidas","Balencigia","Common Projects","Georgio Armani","Hermes","Prada","Ralph Lauren","J. Crew","Lululemon",]
-    var selectedBrands:[String] = []
-
+    @IBOutlet weak var notificationSwitch: UISwitch!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var saveButton: UIButton!
+    var allBrands = ["Gucci","Dior","Versace","Off White","Supreme","Louis Vuitton","Adidas","Balencigia","Common Projects","Georgio Armani","Hermes","Prada","Ralph Lauren","J. Crew","Lululemon",]
+    var selectedBrands:[String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
         saveButton.layer.cornerRadius = 10
-        
+        saveButton.layer.borderColor = UIColor.black.cgColor
+        saveButton.layer.borderWidth = 1.0
+        // Do any additional setup after loading the view.
+        getPrefrences()
+    }
+    
+    @IBAction func notificationSwitchValueChanged(_ sender: UISwitch) {
+        if sender.isOn {
+            saveNotificationPrefrences(value: true)
+        }else{
+            saveNotificationPrefrences(value: false)
+        }
+    }
+    func getPrefrences(){
+        MBProgressHUD.showAdded(to: view, animated: true)
+        db.collection("profile").whereField("uid", isEqualTo: uid).getDocuments() { (querySnapshot, err) in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    if let brands = data["brands"] as? [String]
+                    {
+                        self.selectedBrands = brands
+                        
+                    }
+                    if let notificationFlag = data["notificationEnable"] as? Bool{
+                        self.notificationSwitch.setOn(notificationFlag, animated: true)
+                    }
+                    self.tableView.reloadData()
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
+    }
+    func saveNotificationPrefrences(value:Bool){
+        MBProgressHUD.showAdded(to: view, animated: true)
+        db.collection("profile").whereField("uid", isEqualTo: uid).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if querySnapshot!.documents.count == 0{
+
+                }else{
+                    let updateReference = db.collection("profile").document(querySnapshot!.documents.first?.documentID ?? "")
+                    updateReference.getDocument { (document, err) in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        if let err = err {
+                            print(err.localizedDescription)
+                        }
+                        else {
+                            document?.reference.updateData([
+                                "notificationEnable": self.notificationSwitch.isOn
+                                ])
+
+                        }
+                    }
+
+                }
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
     }
     func saveBrandsPrefrences(){
         MBProgressHUD.showAdded(to: view, animated: true)
@@ -43,14 +106,7 @@ class OnBoardingViewController: UIViewController,UITableViewDelegate,UITableView
                             document?.reference.updateData([
                                 "brands": self.selectedBrands
                                 ])
-                            UserDefaults.standard.set(true, forKey: "launchedBefore")
-                            let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                            let vc : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "mainTabbarController") as! UITabBarController
-                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                            appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
-                            appDelegate.window?.rootViewController = vc
-                            
-                            appDelegate.window?.makeKeyAndVisible()
+                            self.showAlert(withTile: "", andMessage: "Brand's Updated Successfully")
                         }
                     }
 
@@ -104,4 +160,5 @@ class OnBoardingViewController: UIViewController,UITableViewDelegate,UITableView
         self.tableView.reloadData()
 
     }
+
 }

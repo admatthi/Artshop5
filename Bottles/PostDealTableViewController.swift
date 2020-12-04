@@ -11,6 +11,7 @@ import Firebase
 import MBProgressHUD
 import ReadabilityKit
 import Kingfisher
+import FirebaseFirestore
 class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
     @IBOutlet weak var dealUrlTF: UITextField!
     @IBOutlet weak var brandTF: UITextField!
@@ -24,6 +25,8 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
         dealUrlTF.delegate = self
         submitbutton.layer.borderColor = UIColor.black.cgColor
         submitbutton.layer.borderWidth = 1.0
+        submitbutton.layer.cornerRadius = 10
+
     }
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         self.imageUrl = nil

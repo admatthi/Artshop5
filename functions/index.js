@@ -11,7 +11,7 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 const db = admin.firestore();
-exports.sendNotificationToTopic = functions.firestore.document('latest_deals/{dealId}').onCreate(async  (change, context) => {
+exports.sendNotificationToTopic = functions.firestore.document('latest_deals/{dealId}').onWrite(async  (change, context) => {
 console.log(change);
     var deal = change.after.data();
     var dealName =  deal.brand;
@@ -22,8 +22,8 @@ console.log(change);
         var data = doc.data();
         var message ={
             notification: {
-                title: "New Deal",
-                body: "Deal " + dealName + " Arrived"
+                title: "New Sale",
+                body: dealName + " deal just launched"
 
             },
             "token": data.token
