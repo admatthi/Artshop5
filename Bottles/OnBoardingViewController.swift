@@ -40,17 +40,22 @@ class OnBoardingViewController: UIViewController,UITableViewDelegate,UITableView
                             print(err.localizedDescription)
                         }
                         else {
+                            MBProgressHUD.showAdded(to: self.view, animated: true)
                             document?.reference.updateData([
                                 "brands": self.selectedBrands
-                                ])
-                            UserDefaults.standard.set(true, forKey: "launchedBefore")
-                            let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                            let vc : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "mainTabbarController") as! UITabBarController
-                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                            appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
-                            appDelegate.window?.rootViewController = vc
-                            
-                            appDelegate.window?.makeKeyAndVisible()
+                            ],completion: { (error) in
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                                if error == nil {
+                                    UserDefaults.standard.set(true, forKey: "launchedBefore")
+                                    let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                    let vc : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "mainTabbarController") as! UITabBarController
+                                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                    appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
+                                    appDelegate.window?.rootViewController = vc
+                                    appDelegate.window?.makeKeyAndVisible()
+                                }
+                            })
+
                         }
                     }
 
