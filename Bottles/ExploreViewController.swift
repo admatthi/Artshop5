@@ -46,7 +46,7 @@ var uid = String()
 var ref : DatabaseReference?
 var refer = String()
 
-class ExploreViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ExploreViewController: UIViewController {
     var fcmToken:String = ""
     @IBOutlet weak var titleCollectionView: UICollectionView!
     var counter = 0
@@ -84,9 +84,6 @@ class ExploreViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-
         genres.removeAll()
         genres.append("Latest")
         genres.append("Shirts")
@@ -217,6 +214,34 @@ class ExploreViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     var genreindex = Int()
     
+
+    
+    
+    func logUsePressed(referrer : String) {
+        AppEvents.logEvent(AppEvents.Name(rawValue: "use pressed"), parameters: ["referrer" : referrer, "bookID" : selectedbookid, "genre" : selectedgenre])
+    }
+    
+    func logCategoryPressed(referrer : String) {
+        AppEvents.logEvent(AppEvents.Name(rawValue: "category pressed"), parameters: ["referrer" : referrer, "genre" : selectedgenre])
+    }
+    
+    func logFilterViewed(referrer : String) {
+        AppEvents.logEvent(AppEvents.Name(rawValue: "filter viewed"), parameters: ["referrer" : referrer, "bookID" : selectedbookid, "genre" : selectedgenre])
+    }
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+}
+extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
@@ -225,7 +250,15 @@ class ExploreViewController: UIViewController, UICollectionViewDelegate, UIColle
         return 0
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView.tag == 1 {
+            return CGSize(width: 80, height: 60)
+        }else{
+            let bounds = UIScreen.main.bounds
+            let width = bounds.width
+            return CGSize(width: width/2, height: 350)
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         refer = "On Tap Discover"
@@ -803,36 +836,11 @@ class ExploreViewController: UIViewController, UICollectionViewDelegate, UIColle
             
         default:
             
-            return UICollectionViewCell()  
+            return UICollectionViewCell()
         }
             
         
     }
-    
-    
-    func logUsePressed(referrer : String) {
-        AppEvents.logEvent(AppEvents.Name(rawValue: "use pressed"), parameters: ["referrer" : referrer, "bookID" : selectedbookid, "genre" : selectedgenre])
-    }
-    
-    func logCategoryPressed(referrer : String) {
-        AppEvents.logEvent(AppEvents.Name(rawValue: "category pressed"), parameters: ["referrer" : referrer, "genre" : selectedgenre])
-    }
-    
-    func logFilterViewed(referrer : String) {
-        AppEvents.logEvent(AppEvents.Name(rawValue: "filter viewed"), parameters: ["referrer" : referrer, "bookID" : selectedbookid, "genre" : selectedgenre])
-    }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
 

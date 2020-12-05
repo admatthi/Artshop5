@@ -679,21 +679,21 @@
                                 <rect key="frame" x="0.0" y="155.5" width="414" height="691.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="aCT-TF-24i">
-                                    <size key="itemSize" width="199" height="353"/>
+                                    <size key="itemSize" width="211" height="355"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Discount" id="AAd-8E-2oz" customClass="DiscountCollectionViewCell" customModule="Drip" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="199" height="353"/>
+                                        <rect key="frame" x="101.5" y="0.0" width="211" height="355"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="41T-JO-5Mn">
-                                            <rect key="frame" x="0.0" y="0.0" width="199" height="353"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="211" height="355"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slim Silhouette Formal Collar Popplin Button Cuff Shirt" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ar7-xg-DXP">
-                                                    <rect key="frame" x="16" y="234.5" width="167" height="44"/>
+                                                    <rect key="frame" x="16" y="234.5" width="179" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="DA3-u8-4N6"/>
                                                     </constraints>
@@ -702,7 +702,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adidas" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhB-w7-lOv">
-                                                    <rect key="frame" x="16" y="219" width="167" height="14"/>
+                                                    <rect key="frame" x="16" y="219" width="179" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14" id="6aG-gn-RXM"/>
                                                     </constraints>
@@ -711,7 +711,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$80" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09C-8E-dG5">
-                                                    <rect key="frame" x="41" y="278" width="57" height="27"/>
+                                                    <rect key="frame" x="47" y="278" width="57" height="27"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="57" id="7BS-bb-7ye"/>
                                                         <constraint firstAttribute="height" constant="27" id="wEu-U2-xue"/>
@@ -721,14 +721,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2020-10-05 at 5.47.45 PM" translatesAutoresizingMaskIntoConstraints="NO" id="j2t-bk-AMx">
-                                                    <rect key="frame" x="34" y="54" width="131" height="157"/>
+                                                    <rect key="frame" x="40" y="54" width="131" height="157"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="131" id="fdV-xH-V0V"/>
                                                         <constraint firstAttribute="height" constant="157" id="spD-VD-tGA"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$29" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tN8-2f-m9h">
-                                                    <rect key="frame" x="103" y="278" width="70" height="27"/>
+                                                    <rect key="frame" x="109" y="278" width="70" height="27"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="RVS-u8-ZmL"/>
                                                         <constraint firstAttribute="height" constant="27" id="zzP-VL-jzD"/>
@@ -765,7 +765,7 @@
                                                 <constraint firstItem="j2t-bk-AMx" firstAttribute="centerX" secondItem="41T-JO-5Mn" secondAttribute="centerX" id="zOd-Ah-S9b"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="199" height="353"/>
+                                        <size key="customSize" width="211" height="355"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                 <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
