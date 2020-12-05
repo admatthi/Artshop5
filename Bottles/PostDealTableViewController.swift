@@ -12,9 +12,13 @@ import MBProgressHUD
 import ReadabilityKit
 import Kingfisher
 import FirebaseFirestore
+import DropDown
 class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
+    let dropDown = DropDown()
     @IBOutlet weak var dealUrlTF: UITextField!
     @IBOutlet weak var brandTF: UITextField!
+    @IBOutlet weak var categoryTF: UITextField!
+    @IBOutlet weak var CategoryButton: UIButton!
     @IBOutlet weak var itemTF: UITextField!
     @IBOutlet weak var currentPriceTF: UITextField!
     @IBOutlet weak var originalPriceTF: UITextField!
@@ -27,6 +31,18 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
         submitbutton.layer.borderWidth = 1.0
         submitbutton.layer.cornerRadius = 10
 
+    }
+    @IBAction func CategoryButtonAction(_ sender: Any) {
+        dropDown.dataSource = ["Shoes", "Shirts", "Pants", "Jackets", "Sweaters", "Sweatshirts"]
+        dropDown.anchorView = CategoryButton
+        dropDown.topOffset = CGPoint(x: 0, y: 350)
+        dropDown.backgroundColor = .white
+        dropDown.textColor = .black
+        dropDown.show()
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            self?.categoryTF.text = item
+            
+        }
     }
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         self.imageUrl = nil
@@ -74,10 +90,12 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
             showAlert(withTile: "Validation Error", andMessage: "Please add Current Price")
         }else  if originalPriceTF.text == nil || originalPriceTF.text == "" {
             showAlert(withTile: "Validation Error", andMessage: "Please add Original Price")
-        }else  if brandImageView.image == nil {
+        }else if categoryTF.text == "" {
+            showAlert(withTile: "Validation Error", andMessage: "Please Select Atleast one Category")
+        }else if brandImageView.image == nil {
             showAlert(withTile: "Validation Error" , andMessage: "brand Url Did't able to get brand image please try other Rich url")
         }else{
-        self.postData(dealurl: dealUrlTF.text ?? "", brandName: brandTF.text ?? "", ItemName: itemTF.text ?? "", originalPrice: originalPriceTF.text ?? "", currentPrice: currentPriceTF.text ?? "", imageUrl: self.imageUrl ?? "")
+            self.postData(dealurl: dealUrlTF.text ?? "", brandName: brandTF.text ?? "", ItemName: itemTF.text ?? "", originalPrice: originalPriceTF.text ?? "", currentPrice: currentPriceTF.text ?? "", imageUrl: self.imageUrl ?? "", category: categoryTF.text ?? "")
         }
     }
     func showAlert(withTile title:String,andMessage message:String)
@@ -86,7 +104,7 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
          alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
          self.present(alert, animated: true, completion: nil)
      }
-    func postData(dealurl:String,brandName:String,ItemName:String,originalPrice:String,currentPrice:String,imageUrl:String){
+    func postData(dealurl:String,brandName:String,ItemName:String,originalPrice:String,currentPrice:String,imageUrl:String,category:String){
         MBProgressHUD.showAdded(to: view, animated: true)
         // Add a second document with a generated ID.
         var ref: DocumentReference? = nil
@@ -99,6 +117,7 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
             "orignal_price": Int(originalPrice) ?? 0,
             "url": dealurl,
             "website":dealurl,
+            "category":category,
             "created_at":Date()
         ]) { err in
             if let err = err {

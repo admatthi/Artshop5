@@ -19,7 +19,7 @@ pod 'AppsFlyerFramework'
 pod 'MBProgressHUD'
 pod 'IQKeyboardManagerSwift'
 pod 'ReadabilityKit'
-
+pod 'DropDown'
 
   # Pods for Bottles
 
