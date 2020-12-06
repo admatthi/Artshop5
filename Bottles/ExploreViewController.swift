@@ -274,11 +274,11 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
             let font = UIFont(name: "Helvetica", size: 17.0)!
             let width = self.estimatedFrame(text: genres[indexPath.row], font: font).width
 
-            return CGSize(width: width+30, height: 40)
+            return CGSize(width: width+30, height: 35)
         }else{
             let bounds = UIScreen.main.bounds
             let width = bounds.width
-            return CGSize(width: width/2, height: 350)
+            return CGSize(width: width/2, height: 330)
         }
     }
     
