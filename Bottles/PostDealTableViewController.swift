@@ -27,6 +27,11 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
     var imageUrl :String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        let notificationCenter = NotificationCenter.default
+            notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+            
+            notificationCenter.addObserver(self, selector: #selector(appCameToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+            
         dealUrlTF.delegate = self
         brandTF.delegate = self
         submitbutton.layer.borderColor = UIColor.black.cgColor
@@ -74,6 +79,41 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
             dealUrlTF.text = ""
         }
     }
+    @objc func appMovedToBackground() {
+       print("app enters background")
+   }
+
+   @objc func appCameToForeground() {
+    let pasteboard = UIPasteboard.general
+    if let text = pasteboard.string , pasteboard.hasURLs{
+        print(text)
+        dealUrlTF.text = text
+        self.imageUrl = nil
+        self.brandImageView.image = nil
+        guard let articleUrl = URL(string: dealUrlTF.text ?? "") else { return }
+        MBProgressHUD.showAdded(to: view, animated: true)
+        Readability.parse(url: articleUrl, completion: { data in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            let title = data?.title
+            let description = data?.description
+            let keywords = data?.keywords
+            let imageUrl = data?.topImage
+           
+            let videoUrl = data?.topVideo
+            let datePublished = data?.datePublished
+            
+            self.imageUrl = data?.topImage
+            if let url = URL(string: data?.topImage ?? ""){
+                self.brandImageView.kf.setImage(with: url)
+            }
+            
+           
+            
+        })
+    }else{
+        dealUrlTF.text = ""
+    }
+   }
      @objc func swiped(_ gesture: UISwipeGestureRecognizer) {
         if gesture.direction == .left {
             if (self.tabBarController?.selectedIndex)! < 3 { // set your total tabs here
