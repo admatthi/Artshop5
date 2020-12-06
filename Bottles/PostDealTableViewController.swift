@@ -95,8 +95,11 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
         currentPriceTF.text = ""
         originalPriceTF.text = ""
         brandImageView.image = nil
+        categoryTF.text = ""
     }
     @IBAction func submitButtonAction(_ sender: Any) {
+        let currentPrice = Int(currentPriceTF.text ?? "") ?? 0
+        let originalPrice = Int(originalPriceTF.text ?? "") ?? 0
         if dealUrlTF.text == nil || dealUrlTF.text == "" {
             showAlert(withTile: "Validation Error", andMessage: "Please Enter DealUrl")
         }else if URL(string: dealUrlTF.text!) == nil {
@@ -113,6 +116,8 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
             showAlert(withTile: "Validation Error", andMessage: "Please Select Atleast one Category")
         }else if brandImageView.image == nil {
             showAlert(withTile: "Validation Error" , andMessage: "brand Url Did't able to get brand image please try other Rich url")
+        }else if currentPrice >= originalPrice {
+            showAlert(withTile: "Validation Error" , andMessage: "Current Price must be less than the orginal price.")
         }else{
             self.postData(dealurl: dealUrlTF.text ?? "", brandName: brandTF.text ?? "", ItemName: itemTF.text ?? "", originalPrice: originalPriceTF.text ?? "", currentPrice: currentPriceTF.text ?? "", imageUrl: self.imageUrl ?? "", category: categoryTF.text ?? "")
         }
