@@ -212,6 +212,7 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - ActionSheetPicker-3.0 (2.7.1)
   - AppsFlyerFramework (6.0.4)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
@@ -381,6 +382,7 @@ PODS:
     - Ji (= 5.0.0)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0
   - AppsFlyerFramework
   - DropDown
   - FBSDKCoreKit
@@ -399,6 +401,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - abseil
+    - ActionSheetPicker-3.0
     - AppsFlyerFramework
     - BoringSSL-GRPC
     - DropDown
@@ -434,6 +437,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
+  ActionSheetPicker-3.0: 36da254b97a09ff89679ecb8b8510bd3e5bdc773
   AppsFlyerFramework: acc30e47ea49a058f4bb9b43cf00e976fd80d1ed
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
@@ -467,6 +471,6 @@ SPEC CHECKSUMS:
   PurchasesCoreSwift: 53956256a1ff84de8f0f212ea4b9b46a53a212dc
   ReadabilityKit: 09e8b2ecb3d06f17f4c856e426c34f9016e86e6f
 
-PODFILE CHECKSUM: bfe49c02f60326e7a6cef89a37ad56602e34d24c
+PODFILE CHECKSUM: 596486516ec66def54fa337f51a09eab51b3474b
 
 COCOAPODS: 1.9.3

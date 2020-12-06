@@ -20,7 +20,7 @@ pod 'MBProgressHUD'
 pod 'IQKeyboardManagerSwift'
 pod 'ReadabilityKit'
 pod 'DropDown'
-
+pod 'ActionSheetPicker-3.0'
   # Pods for Bottles
 
   target 'BottlesTests' do

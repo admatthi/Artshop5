@@ -13,6 +13,7 @@ import ReadabilityKit
 import Kingfisher
 import FirebaseFirestore
 import DropDown
+import ActionSheetPicker_3_0
 class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
     let dropDown = DropDown()
     @IBOutlet weak var dealUrlTF: UITextField!
@@ -52,16 +53,21 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
         }
     }
     @IBAction func CategoryButtonAction(_ sender: Any) {
-        dropDown.dataSource = ["Shoes", "Shirts", "Pants", "Jackets", "Sweaters", "Sweatshirts"]
-        dropDown.anchorView = CategoryButton
-        dropDown.topOffset = CGPoint(x: 0, y: 350)
-        dropDown.backgroundColor = .white
-        dropDown.textColor = .black
-        dropDown.show()
-        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
-            self?.categoryTF.text = item
-            
-        }
+//        dropDown.dataSource = ["Shoes", "Shirts", "Pants", "Jackets", "Sweaters", "Sweatshirts"]
+//        dropDown.anchorView = CategoryButton
+//        dropDown.topOffset = CGPoint(x: 0, y: 350)
+//        dropDown.backgroundColor = .white
+//        dropDown.textColor = .black
+//        dropDown.show()
+//        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+//            self?.categoryTF.text = item
+//
+//        }
+        let names = ["Shoes", "Shirts", "Pants", "Jackets", "Sweaters", "Sweatshirts"]
+        ActionSheetStringPicker.show(withTitle: "Select Categories", rows:names, initialSelection: 0, doneBlock: {
+            picker,index , value in
+            self.categoryTF.text = names[index]
+        }, cancel: { ActionStringCancelBlock in return }, origin: self.categoryTF)
     }
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         self.imageUrl = nil
