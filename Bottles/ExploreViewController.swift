@@ -96,9 +96,12 @@ class ExploreViewController: UIViewController {
         super.viewDidLoad()
         genres.removeAll()
         genres.append("Latest")
+        genres.append("Shoes")
         genres.append("Shirts")
         genres.append("Pants")
-        genres.append("Shoes")
+        genres.append("Jackets")
+        genres.append("Sweaters")
+        genres.append("Sweatshirts")
         genres.append("Other")
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
@@ -268,12 +271,24 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView.tag == 1 {
-            return CGSize(width: 80, height: 60)
+            let font = UIFont(name: "Helvetica", size: 17.0)!
+            let width = self.estimatedFrame(text: genres[indexPath.row], font: font).width
+
+            return CGSize(width: width+30, height: 40)
         }else{
             let bounds = UIScreen.main.bounds
             let width = bounds.width
             return CGSize(width: width/2, height: 350)
         }
+    }
+    
+    func estimatedFrame(text: String, font: UIFont) -> CGRect {
+        let size = CGSize(width: 200, height: 1000) // temporary size
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        return NSString(string: text).boundingRect(with: size,
+                                                   options: options,
+                                                   attributes: [NSAttributedString.Key.font: font],
+                                                   context: nil)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -380,7 +395,7 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         switch collectionView {
@@ -399,7 +414,9 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
         // Genre collection
         case self.genreCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Categories", for: indexPath) as! CategoryCollectionViewCell
-            
+            cell.borderView.layer.cornerRadius = 5
+            cell.borderView.layer.borderWidth = 1
+            cell.borderView.layer.borderColor = UIColor.black.cgColor
             collectionView.alpha = 1
             cell.titlelabel.text = genres[indexPath.row]
             
@@ -420,12 +437,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 0 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
             }
@@ -435,12 +452,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 1 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -451,12 +468,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 2 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -467,12 +484,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 3 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -483,12 +500,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 4 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
             }
@@ -498,12 +515,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 5 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -514,12 +531,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 6 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -530,12 +547,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 7 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -546,12 +563,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 8 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -563,12 +580,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 9 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -580,12 +597,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 10 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -597,12 +614,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 11 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -614,12 +631,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 12 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -631,12 +648,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 13 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -648,12 +665,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 14 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -665,12 +682,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 15 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -682,12 +699,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 16 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -699,12 +716,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 17 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -716,12 +733,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if indexPath.row == 18 {
                     
                     cell.titlelabel.alpha = 1
-                    cell.selectedimage.alpha = 1
+                    cell.borderView.alpha = 1
                     
                 } else {
                     
                     cell.titlelabel.alpha = 0.25
-                    cell.selectedimage.alpha = 0
+                    cell.borderView.alpha = 0
                     
                 }
                 
@@ -731,7 +748,7 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
             if selectedindex == 1000 {
                 
                 cell.titlelabel.alpha = 0.25
-                cell.selectedimage.alpha = 0
+                cell.borderView.alpha = 0
             }
             
             return cell
