@@ -95,7 +95,7 @@ class ExploreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         genres.removeAll()
-        genres.append("Latest")
+        genres.append("Newly Added")
         genres.append("Shoes")
         genres.append("Shirts")
         genres.append("Pants")
@@ -113,7 +113,7 @@ class ExploreViewController: UIViewController {
         let loadingNotification = MBProgressHUD.showAdded(to: view, animated: true)
         
         
-        selectedgenre = "Latest"
+        selectedgenre = "Newly Added"
         
         var screenSize = titleCollectionView.bounds
         var screenWidth = screenSize.width
@@ -271,7 +271,7 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView.tag == 1 {
-            let font = UIFont(name: "Helvetica", size: 17.0)!
+            let font = UIFont(name: "HelveticaNeue-Bold", size: 15.0)!
             let width = self.estimatedFrame(text: genres[indexPath.row], font: font).width
 
             return CGSize(width: width+30, height: 35)
