@@ -27,6 +27,8 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
     var imageUrl :String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentPriceTF.setLeftPaddingPoints(15)
+        originalPriceTF.setLeftPaddingPoints(15)
         let notificationCenter = NotificationCenter.default
             notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
             
@@ -124,6 +126,15 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
                 self.tabBarController?.selectedIndex -= 1
             }
         }
+    }
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if range.length>0  && range.location == 0 {
+            let changedText = NSString(string: textField.text!).substring(with: range)
+            if changedText.contains("$") {
+                return false
+            }
+        }
+        return true
     }
     @IBAction func CategoryButtonAction(_ sender: Any) {
 //        dropDown.dataSource = ["Shoes", "Shirts", "Pants", "Jackets", "Sweaters", "Sweatshirts"]
@@ -242,5 +253,17 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
             }
         }
         
+    }
+}
+extension UITextField {
+    func setLeftPaddingPoints(_ amount:CGFloat){
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    func setRightPaddingPoints(_ amount:CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
     }
 }
