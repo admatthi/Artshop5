@@ -818,6 +818,7 @@
                                                                 <constraint firstAttribute="height" constant="32" id="eaE-vJ-nUJ"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="3" maxY="0.0"/>
                                                             <state key="normal" title="0" image="blackheart">
                                                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
@@ -829,7 +830,9 @@
                                                                 <constraint firstAttribute="height" constant="32" id="y75-tb-j8d"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                            <inset key="contentEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
+                                                            <inset key="imageEdgeInsets" minX="-3" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <state key="normal" title="0" image="comment">
                                                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
