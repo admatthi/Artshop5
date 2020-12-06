@@ -76,7 +76,7 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
                 
             })
         }else{
-            dealUrlTF.text = ""
+//            dealUrlTF.text = ""
         }
     }
     @objc func appMovedToBackground() {
@@ -111,7 +111,7 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
             
         })
     }else{
-        dealUrlTF.text = ""
+//        dealUrlTF.text = ""
     }
    }
      @objc func swiped(_ gesture: UISwipeGestureRecognizer) {
