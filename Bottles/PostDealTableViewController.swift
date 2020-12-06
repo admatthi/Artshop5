@@ -25,9 +25,81 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
     @IBOutlet weak var originalPriceTF: UITextField!
     @IBOutlet weak var brandImageView: UIImageView!
     var imageUrl :String?
+    lazy var copyButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = #colorLiteral(red: 0.03529411765, green: 0.3098039216, blue: 0.2784313725, alpha: 1)
+        button.titleLabel?.text = ""
+        button.titleLabel?.textColor = .white
+        button.titleLabel?.font = .systemFont(ofSize: 12)
+        button.addTarget(self, action: #selector(fabTapped(_:)), for: .touchUpInside)
+        return button
+    }()
+    lazy var copyButtonLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 15)
+        label.textAlignment = .center
+        label.text = "from clipboard"
+       
+        return label
+    }()
+    @objc func fabTapped(_ button: UIButton) {
+        print("button tapped")
+        self.dealUrlTF.text = self.copyButton.titleLabel?.text ?? ""
+    }
+    func setupButton() {
+        NSLayoutConstraint.activate([
+            copyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
+            copyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
+            copyButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -26),
+            copyButton.heightAnchor.constraint(equalToConstant: 50)
+            ])
+        copyButton.layer.cornerRadius = 10
+        copyButton.layer.masksToBounds = true
+        copyButton.layer.borderWidth = 1
+        NSLayoutConstraint.activate([
+            copyButtonLabel.trailingAnchor.constraint(equalTo: copyButton.trailingAnchor, constant: -36),
+            copyButtonLabel.leadingAnchor.constraint(equalTo: copyButton.leadingAnchor, constant: 36),
+            copyButtonLabel.bottomAnchor.constraint(equalTo: copyButton.bottomAnchor, constant: -30),
+            ])
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let view = UIApplication.shared.keyWindow {
+            view.addSubview(copyButton)
+            view.addSubview(copyButtonLabel)
+            setupButton()
+            
+        }
+        let pasteboard = UIPasteboard.general
+        if let text = pasteboard.string , pasteboard.hasURLs{
+            print(text)
+            copyButtonLabel.isHidden = false
+            copyButton.isHidden = false
+            copyButton.setTitle(text, for: .normal)
+            copyButton.setTitle(text, for: .selected)
+        }else{
+            copyButton.setTitle("", for: .normal)
+            copyButton.setTitle("", for: .selected)
+            copyButton.isHidden = true
+            copyButtonLabel.isHidden = true
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let view = UIApplication.shared.keyWindow, copyButton.isDescendant(of: view) {
+            copyButton.removeFromSuperview()
+            copyButtonLabel.removeFromSuperview()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         dealUrlTF.delegate = self
+        brandTF.delegate = self
         submitbutton.layer.borderColor = UIColor.black.cgColor
         submitbutton.layer.borderWidth = 1.0
         submitbutton.layer.cornerRadius = 10
@@ -39,6 +111,10 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
         swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
         self.view.addGestureRecognizer(swipeLeft)
 
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
 
     }
      @objc func swiped(_ gesture: UISwipeGestureRecognizer) {
@@ -69,7 +145,15 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
             self.categoryTF.text = names[index]
         }, cancel: { ActionStringCancelBlock in return }, origin: self.categoryTF)
     }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentString: NSString = textField.text! as NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        
+        return true
+    }
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        if textField == dealUrlTF{
         self.imageUrl = nil
         self.brandImageView.image = nil
         guard let articleUrl = URL(string: textField.text ?? "") else { return }
@@ -92,6 +176,7 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
            
             
         })
+        }
     }
     @IBOutlet weak var submitbutton: UIButton!
     func clearAll(){
