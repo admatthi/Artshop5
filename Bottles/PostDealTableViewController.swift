@@ -13,6 +13,7 @@ import ReadabilityKit
 import Kingfisher
 import FirebaseFirestore
 import DropDown
+import ActionSheetPicker_3_0
 class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
     let dropDown = DropDown()
     @IBOutlet weak var dealUrlTF: UITextField!
@@ -26,25 +27,141 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
     var imageUrl :String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentPriceTF.setLeftPaddingPoints(15)
+        originalPriceTF.setLeftPaddingPoints(15)
+        let notificationCenter = NotificationCenter.default
+            notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+            
+            notificationCenter.addObserver(self, selector: #selector(appCameToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+            
         dealUrlTF.delegate = self
+        brandTF.delegate = self
         submitbutton.layer.borderColor = UIColor.black.cgColor
         submitbutton.layer.borderWidth = 1.0
         submitbutton.layer.cornerRadius = 10
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
+        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
+        self.view.addGestureRecognizer(swipeRight)
+
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
+        swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
+        self.view.addGestureRecognizer(swipeLeft)
+
 
     }
-    @IBAction func CategoryButtonAction(_ sender: Any) {
-        dropDown.dataSource = ["Shoes", "Shirts", "Pants", "Jackets", "Sweaters", "Sweatshirts"]
-        dropDown.anchorView = CategoryButton
-        dropDown.topOffset = CGPoint(x: 0, y: 350)
-        dropDown.backgroundColor = .white
-        dropDown.textColor = .black
-        dropDown.show()
-        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
-            self?.categoryTF.text = item
-            
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        let pasteboard = UIPasteboard.general
+        if let text = pasteboard.string , pasteboard.hasURLs{
+            print(text)
+            dealUrlTF.text = text
+            self.imageUrl = nil
+            self.brandImageView.image = nil
+            guard let articleUrl = URL(string: dealUrlTF.text ?? "") else { return }
+            MBProgressHUD.showAdded(to: view, animated: true)
+            Readability.parse(url: articleUrl, completion: { data in
+                MBProgressHUD.hide(for: self.view, animated: true)
+                let title = data?.title
+                let description = data?.description
+                let keywords = data?.keywords
+                let imageUrl = data?.topImage
+               
+                let videoUrl = data?.topVideo
+                let datePublished = data?.datePublished
+                
+                self.imageUrl = data?.topImage
+                if let url = URL(string: data?.topImage ?? ""){
+                    self.brandImageView.kf.setImage(with: url)
+                }
+                
+               
+                
+            })
+        }else{
+//            dealUrlTF.text = ""
         }
     }
+    @objc func appMovedToBackground() {
+       print("app enters background")
+   }
+
+   @objc func appCameToForeground() {
+    let pasteboard = UIPasteboard.general
+    if let text = pasteboard.string , pasteboard.hasURLs{
+        print(text)
+        dealUrlTF.text = text
+        self.imageUrl = nil
+        self.brandImageView.image = nil
+        guard let articleUrl = URL(string: dealUrlTF.text ?? "") else { return }
+        MBProgressHUD.showAdded(to: view, animated: true)
+        Readability.parse(url: articleUrl, completion: { data in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            let title = data?.title
+            let description = data?.description
+            let keywords = data?.keywords
+            let imageUrl = data?.topImage
+           
+            let videoUrl = data?.topVideo
+            let datePublished = data?.datePublished
+            
+            self.imageUrl = data?.topImage
+            if let url = URL(string: data?.topImage ?? ""){
+                self.brandImageView.kf.setImage(with: url)
+            }
+            
+           
+            
+        })
+    }else{
+//        dealUrlTF.text = ""
+    }
+   }
+     @objc func swiped(_ gesture: UISwipeGestureRecognizer) {
+        if gesture.direction == .left {
+            if (self.tabBarController?.selectedIndex)! < 3 { // set your total tabs here
+                self.tabBarController?.selectedIndex += 1
+            }
+        } else if gesture.direction == .right {
+            if (self.tabBarController?.selectedIndex)! > 0 {
+                self.tabBarController?.selectedIndex -= 1
+            }
+        }
+    }
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if range.length>0  && range.location == 0 {
+            let changedText = NSString(string: textField.text!).substring(with: range)
+            if changedText.contains("$") {
+                return false
+            }
+        }
+        return true
+    }
+    @IBAction func CategoryButtonAction(_ sender: Any) {
+//        dropDown.dataSource = ["Shoes", "Shirts", "Pants", "Jackets", "Sweaters", "Sweatshirts"]
+//        dropDown.anchorView = CategoryButton
+//        dropDown.topOffset = CGPoint(x: 0, y: 350)
+//        dropDown.backgroundColor = .white
+//        dropDown.textColor = .black
+//        dropDown.show()
+//        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+//            self?.categoryTF.text = item
+//
+//        }
+        let names = ["Shoes", "Shirts", "Pants", "Jackets", "Sweaters", "Sweatshirts"]
+        ActionSheetStringPicker.show(withTitle: "Select Categories", rows:names, initialSelection: 0, doneBlock: {
+            picker,index , value in
+            self.categoryTF.text = names[index]
+        }, cancel: { ActionStringCancelBlock in return }, origin: self.categoryTF)
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentString: NSString = textField.text! as NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        
+        return true
+    }
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        if textField == dealUrlTF{
         self.imageUrl = nil
         self.brandImageView.image = nil
         guard let articleUrl = URL(string: textField.text ?? "") else { return }
@@ -67,6 +184,7 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
            
             
         })
+        }
     }
     @IBOutlet weak var submitbutton: UIButton!
     func clearAll(){
@@ -76,8 +194,11 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
         currentPriceTF.text = ""
         originalPriceTF.text = ""
         brandImageView.image = nil
+        categoryTF.text = ""
     }
     @IBAction func submitButtonAction(_ sender: Any) {
+        let currentPrice = Int(currentPriceTF.text ?? "") ?? 0
+        let originalPrice = Int(originalPriceTF.text ?? "") ?? 0
         if dealUrlTF.text == nil || dealUrlTF.text == "" {
             showAlert(withTile: "Validation Error", andMessage: "Please Enter DealUrl")
         }else if URL(string: dealUrlTF.text!) == nil {
@@ -94,6 +215,8 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
             showAlert(withTile: "Validation Error", andMessage: "Please Select Atleast one Category")
         }else if brandImageView.image == nil {
             showAlert(withTile: "Validation Error" , andMessage: "brand Url Did't able to get brand image please try other Rich url")
+        }else if currentPrice >= originalPrice {
+            showAlert(withTile: "Validation Error" , andMessage: "Current Price must be less than the orginal price.")
         }else{
             self.postData(dealurl: dealUrlTF.text ?? "", brandName: brandTF.text ?? "", ItemName: itemTF.text ?? "", originalPrice: originalPriceTF.text ?? "", currentPrice: currentPriceTF.text ?? "", imageUrl: self.imageUrl ?? "", category: categoryTF.text ?? "")
         }
@@ -130,5 +253,17 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
             }
         }
         
+    }
+}
+extension UITextField {
+    func setLeftPaddingPoints(_ amount:CGFloat){
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    func setRightPaddingPoints(_ amount:CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
     }
 }

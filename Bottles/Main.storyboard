@@ -495,13 +495,22 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lv6-LN-gaA">
+                                                    <rect key="frame" x="30" y="43.5" width="15" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="6zw-Cn-N1u" firstAttribute="leading" secondItem="VuO-BZ-u8P" secondAttribute="leadingMargin" constant="10" id="AqZ-br-NRa"/>
+                                                <constraint firstItem="lv6-LN-gaA" firstAttribute="top" secondItem="bLC-ek-pQj" secondAttribute="top" id="FoL-yo-W5Q"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="bLC-ek-pQj" secondAttribute="trailing" constant="10" id="JpX-Vl-Hp4"/>
                                                 <constraint firstItem="6zw-Cn-N1u" firstAttribute="top" secondItem="VuO-BZ-u8P" secondAttribute="topMargin" constant="5" id="UeD-O1-HwZ"/>
                                                 <constraint firstItem="bLC-ek-pQj" firstAttribute="leading" secondItem="6zw-Cn-N1u" secondAttribute="leading" id="Wv3-63-mai"/>
                                                 <constraint firstItem="bLC-ek-pQj" firstAttribute="top" secondItem="6zw-Cn-N1u" secondAttribute="bottom" constant="10" id="cPR-Cf-7XQ"/>
+                                                <constraint firstItem="lv6-LN-gaA" firstAttribute="bottom" secondItem="bLC-ek-pQj" secondAttribute="bottom" id="rxD-bx-y4u"/>
+                                                <constraint firstItem="lv6-LN-gaA" firstAttribute="leading" secondItem="bLC-ek-pQj" secondAttribute="leading" id="x5m-FH-0nY"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -527,9 +536,18 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="71p-ga-wya">
+                                                    <rect key="frame" x="30" y="43" width="15" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="71p-ga-wya" firstAttribute="bottom" secondItem="4Ha-IL-jfN" secondAttribute="bottom" id="0cc-qk-jZA"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="4Ha-IL-jfN" secondAttribute="trailing" constant="10" id="7Rx-8K-YJV"/>
+                                                <constraint firstItem="71p-ga-wya" firstAttribute="leading" secondItem="4Ha-IL-jfN" secondAttribute="leading" id="DEH-uG-iC8"/>
+                                                <constraint firstItem="71p-ga-wya" firstAttribute="top" secondItem="4Ha-IL-jfN" secondAttribute="top" id="EiX-P8-C6r"/>
                                                 <constraint firstItem="wSJ-NC-zMu" firstAttribute="top" secondItem="Ogn-VW-pb7" secondAttribute="topMargin" constant="5" id="I7R-ls-NGx"/>
                                                 <constraint firstItem="4Ha-IL-jfN" firstAttribute="top" secondItem="wSJ-NC-zMu" secondAttribute="bottom" constant="10" id="bnY-n4-jsK"/>
                                                 <constraint firstItem="wSJ-NC-zMu" firstAttribute="leading" secondItem="Ogn-VW-pb7" secondAttribute="leadingMargin" constant="10" id="gLP-Z0-t2B"/>
