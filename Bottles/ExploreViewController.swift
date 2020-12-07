@@ -181,7 +181,61 @@ class ExploreViewController: UIViewController {
           })
           
       }
-    
+    func searchDealByCategory(){
+        let allCategories = ["Shoes", "Shirts", "Pants", "Jackets", "Sweaters", "Sweatshirts"]
+        titleCollectionView.alpha = 1
+        let category = genres[selectedindex]
+        var collection = db.collection("latest_deals").whereField("category", in: [category])
+        if category == "Other"{
+            collection = db.collection("latest_deals").whereField("category", notIn: allCategories)
+        }else{
+            
+        }
+        collection.limit(to: 1000)
+            .getDocuments() { (querySnapshot, err) in
+                
+                
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    let para:NSMutableDictionary = NSMutableDictionary()
+                    
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                        let docId = document.documentID
+                        let prod: NSMutableDictionary = NSMutableDictionary()
+                        for (key, value) in data {
+                            prod.setValue(value, forKey: "\(key)")
+                        }
+                        
+                        para.setObject(prod, forKey: docId as NSCopying)
+                        
+                    }
+                    if para.count > 0 {
+                        
+                        if let snapDict = para as? [String : Any] {
+                            
+                            let genre = Genre(withJSON: snapDict)
+                            
+                            if let newbooks = genre.books {
+                                
+                                self.books = newbooks
+                                
+                                //
+                                //
+                                self.books = self.books.sorted(by: { $0.created?.dateValue().timeIntervalSince1970 ?? 0 > $1.created?.dateValue().timeIntervalSince1970 ?? 1 })
+                                
+                                
+                            }
+                        }
+                    }else{
+                        self.books = []
+                    }
+                    
+                }
+                
+        }
+    }
     func queryforids() {
         
         titleCollectionView.alpha = 1
@@ -313,8 +367,13 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             
             genreindex = indexPath.row
-            
-            queryforids()
+            if indexPath.row == 0 {
+                queryforids()
+                
+            }else{
+                searchDealByCategory()
+            }
+           
             
             logCategoryPressed(referrer: referrer)
             
