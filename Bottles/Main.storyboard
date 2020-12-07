@@ -809,12 +809,11 @@
                                                     <state key="normal" image="menu"/>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="v6U-HW-noK">
-                                                    <rect key="frame" x="48" y="288" width="115" height="32"/>
+                                                    <rect key="frame" x="70" y="288" width="71" height="32"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRF-u4-k11">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="32"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="26.5" height="32"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="2Cf-xt-jOq"/>
                                                                 <constraint firstAttribute="height" constant="32" id="eaE-vJ-nUJ"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
@@ -824,9 +823,8 @@
                                                             </state>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIP-CX-TwY">
-                                                            <rect key="frame" x="65" y="0.0" width="50" height="32"/>
+                                                            <rect key="frame" x="41.5" y="0.0" width="29.5" height="32"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="Tj4-sj-ZvC"/>
                                                                 <constraint firstAttribute="height" constant="32" id="y75-tb-j8d"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
@@ -870,8 +868,10 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="brandname" destination="NhB-w7-lOv" id="9dK-lj-WOS"/>
+                                            <outlet property="commentButton" destination="VIP-CX-TwY" id="8Ba-v2-jkL"/>
                                             <outlet property="datelabel" destination="hw7-yU-28F" id="PWs-XI-CxC"/>
                                             <outlet property="imagelabel" destination="j2t-bk-AMx" id="eLn-hE-wLc"/>
+                                            <outlet property="likeButton" destination="cRF-u4-k11" id="93B-Nd-Wus"/>
                                             <outlet property="pricelabel" destination="tN8-2f-m9h" id="llb-gT-0ja"/>
                                             <outlet property="strikethrough" destination="09C-8E-dG5" id="dOe-GP-lpV"/>
                                             <outlet property="titlelabel" destination="ar7-xg-DXP" id="6mY-Ds-Lo4"/>

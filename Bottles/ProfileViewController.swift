@@ -60,6 +60,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
             } else {
                 for document in querySnapshot!.documents {
                     let data = document.data()
+                    UserId = document.documentID
                     if let brands = data["brands"] as? [String]
                     {
                         self.selectedBrands = brands

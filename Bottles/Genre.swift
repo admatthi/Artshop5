@@ -21,3 +21,19 @@ public struct Genre {
         })
     }
 }
+
+
+public struct UserLikeData {
+    let likes: [LikeModel]?
+
+    public init(withJSON json: [String: Any]) {
+        self.likes = json.enumerated().compactMap({ (_, element) -> LikeModel? in
+            let likeID = element.key
+            if let likeJSON = element.value as? [String: Any] {
+
+                return LikeModel(withID: likeID, json: likeJSON)
+            }
+            return nil
+        })
+    }
+}
