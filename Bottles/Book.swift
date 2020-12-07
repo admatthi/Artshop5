@@ -54,6 +54,7 @@ struct Book {
     let originalprice: Int?
     let newprice: Int?
     let brand: String?
+    let category: String?
 
     let created: Timestamp?
 
@@ -63,6 +64,7 @@ struct Book {
         self.bookID = id
         self.originalprice = json["orignal_price"] as? Int
         self.brand = json["brand"] as? String
+        self.category = json["category"] as? String
         self.created = json["created_at"] as? Timestamp
 
         self.newprice = json["new_price"] as? Int

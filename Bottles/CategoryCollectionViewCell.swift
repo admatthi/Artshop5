@@ -11,6 +11,6 @@ import UIKit
 class CategoryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var titlelabel: UILabel!
-       @IBOutlet weak var selectedimage: UIImageView!
-    
+    @IBOutlet weak var borderView: UIView!
+
 }
