@@ -21,6 +21,7 @@ import FirebaseFirestore
 var slimeybool = Bool()
 
 var UserId:String?
+var UserName:String?
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate,MessagingDelegate {
     var window: UIWindow?
@@ -69,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                      
                  } else {
                     let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let vc : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "OnBoardingViewController") as! OnBoardingViewController
+                    let vc : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "AddUserNameTableViewController") as! AddUserNameTableViewController
                     self.window = UIWindow(frame: UIScreen.main.bounds)
                     self.window?.rootViewController = vc
                     
@@ -120,7 +121,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                 for document in querySnapshot!.documents {
                     let data = document.data()
                     UserId = document.documentID
+                    if let userName = data["userName"] as? String
+                    {
+                        UserName = userName
+                        UserDefaults.standard.setValue(UserName, forKey: "UserName")
+                        
+                    }
                     UserDefaults.standard.setValue(UserId, forKey: "UserId")
+                    
                     print("\(document.documentID) => \(document.data())")
                 }
             }
@@ -179,6 +187,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                     UserId = document.documentID
                     UserDefaults.standard.setValue(UserId, forKey: "UserId")
                     print("\(document.documentID) => \(document.data())")
+                    if let userName = data["userName"] as? String
+                    {
+                        UserName = userName
+                        UserDefaults.standard.setValue(UserName, forKey: "UserName")
+                        
+                    }
                 }
                 if querySnapshot!.documents.count == 0{
                     var ref: DocumentReference? = nil
@@ -186,7 +200,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                         "brands": [""],
                         "notificationEnable": true,
                         "token": fcmToken,
-                        "uid":uid
+                        "uid":uid,
+                        "userName":""
                     ]) { err in
                         if let err = err {
                             print("Error adding document: \(err)")

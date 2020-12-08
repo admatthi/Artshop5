@@ -498,6 +498,7 @@ class ExploreViewController: UIViewController {
     }
     @objc func commentButtonAction(sender : AnyObject){
         print(sender.tag)
+        
     }
     
     

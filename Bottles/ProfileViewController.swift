@@ -61,6 +61,12 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 for document in querySnapshot!.documents {
                     let data = document.data()
                     UserId = document.documentID
+                    if let userName = data["userName"] as? String
+                    {
+                        UserName = userName
+                        UserDefaults.standard.setValue(UserName, forKey: "UserName")
+                        
+                    }
                     if let brands = data["brands"] as? [String]
                     {
                         self.selectedBrands = brands

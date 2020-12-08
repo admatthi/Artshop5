@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		021BBB68EA0F5AF522A67254 /* Pods_Bottles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02468BAEB8F2BEC9A94ED7DB /* Pods_Bottles.framework */; };
 		4E0E7F4A2579A94F00196737 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0E7F492579A94F00196737 /* ProfileViewController.swift */; };
+		4E166F4A258010160074A573 /* AddUserNameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E166F49258010160074A573 /* AddUserNameTableViewController.swift */; };
 		4E508AC02578070C009F399C /* PostDealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E508ABF2578070C009F399C /* PostDealViewController.swift */; };
 		4E508AC525780732009F399C /* PostDealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E508AC425780732009F399C /* PostDealTableViewController.swift */; };
 		4E9C4F33257ECD4200F19F6A /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C4F32257ECD4200F19F6A /* LikeModel.swift */; };
@@ -60,6 +61,7 @@
 		02468BAEB8F2BEC9A94ED7DB /* Pods_Bottles.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bottles.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC321C60D251E80FB6D72FD /* Pods_Bottles_BottlesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bottles_BottlesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E0E7F492579A94F00196737 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		4E166F49258010160074A573 /* AddUserNameTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserNameTableViewController.swift; sourceTree = "<group>"; };
 		4E508ABF2578070C009F399C /* PostDealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDealViewController.swift; sourceTree = "<group>"; };
 		4E508AC425780732009F399C /* PostDealTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDealTableViewController.swift; sourceTree = "<group>"; };
 		4E9C4F32257ECD4200F19F6A /* LikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeModel.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				4EF2AD4E257996820076AA34 /* OnBoardingViewController.swift */,
 				4E0E7F492579A94F00196737 /* ProfileViewController.swift */,
 				4E9C4F32257ECD4200F19F6A /* LikeModel.swift */,
+				4E166F49258010160074A573 /* AddUserNameTableViewController.swift */,
 			);
 			path = Bottles;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				9DBAFB1A24A0638C0025C27D /* ContentView.swift in Sources */,
 				9D0A44E424A8F9C400E3FB94 /* CategoryCollectionViewCell.swift in Sources */,
 				4E0E7F4A2579A94F00196737 /* ProfileViewController.swift in Sources */,
+				4E166F4A258010160074A573 /* AddUserNameTableViewController.swift in Sources */,
 				9D1EF6C924A44B2700C980D7 /* ArtCollectionViewCell.swift in Sources */,
 				9D1EF6C524A44A8500C980D7 /* SavedViewController.swift in Sources */,
 				9D1EF6C724A44ACA00C980D7 /* HistoryViewController.swift in Sources */,
