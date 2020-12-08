@@ -11,6 +11,7 @@
 		4E0E7F4A2579A94F00196737 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0E7F492579A94F00196737 /* ProfileViewController.swift */; };
 		4E508AC02578070C009F399C /* PostDealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E508ABF2578070C009F399C /* PostDealViewController.swift */; };
 		4E508AC525780732009F399C /* PostDealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E508AC425780732009F399C /* PostDealTableViewController.swift */; };
+		4E9C4F33257ECD4200F19F6A /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C4F32257ECD4200F19F6A /* LikeModel.swift */; };
 		4EF2AD4F257996820076AA34 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2AD4E257996820076AA34 /* OnBoardingViewController.swift */; };
 		4EF2AD552579998B0076AA34 /* BrandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2AD542579998B0076AA34 /* BrandTableViewCell.swift */; };
 		6668DE2B10C4084CA53CE75B /* Pods_BottlesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19F6AAD1BE3C0A383A2B585 /* Pods_BottlesTests.framework */; };
@@ -61,6 +62,7 @@
 		4E0E7F492579A94F00196737 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4E508ABF2578070C009F399C /* PostDealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDealViewController.swift; sourceTree = "<group>"; };
 		4E508AC425780732009F399C /* PostDealTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDealTableViewController.swift; sourceTree = "<group>"; };
+		4E9C4F32257ECD4200F19F6A /* LikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeModel.swift; sourceTree = "<group>"; };
 		4EF2ACEB25795BA50076AA34 /* Drip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Drip.entitlements; sourceTree = "<group>"; };
 		4EF2AD4E257996820076AA34 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		4EF2AD542579998B0076AA34 /* BrandTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandTableViewCell.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				4E508AC425780732009F399C /* PostDealTableViewController.swift */,
 				4EF2AD4E257996820076AA34 /* OnBoardingViewController.swift */,
 				4E0E7F492579A94F00196737 /* ProfileViewController.swift */,
+				4E9C4F32257ECD4200F19F6A /* LikeModel.swift */,
 			);
 			path = Bottles;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				4EF2AD4F257996820076AA34 /* OnBoardingViewController.swift in Sources */,
 				9D1EF6C324A44A7C00C980D7 /* ExploreViewController.swift in Sources */,
 				9DC0D8CE252BF41000FC402B /* DiscountCollectionViewCell.swift in Sources */,
+				4E9C4F33257ECD4200F19F6A /* LikeModel.swift in Sources */,
 				9DC0D8D0252D4FEB00FC402B /* PayWallViewController.swift in Sources */,
 				9D0A44E824A91A1400E3FB94 /* Genre.swift in Sources */,
 			);

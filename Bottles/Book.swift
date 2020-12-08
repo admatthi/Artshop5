@@ -56,6 +56,7 @@ struct Book {
     let brand: String?
     let category: String?
 
+    var likesCount = 0
     let created: Timestamp?
 
 
@@ -66,7 +67,7 @@ struct Book {
         self.brand = json["brand"] as? String
         self.category = json["category"] as? String
         self.created = json["created_at"] as? Timestamp
-
+        self.likesCount = json["likeCount"] as? Int ?? 0
         self.newprice = json["new_price"] as? Int
         self.author = json["Author"] as? String
         self.description = json["Description"] as? String

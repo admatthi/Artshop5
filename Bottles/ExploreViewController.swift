@@ -52,11 +52,16 @@ class ExploreViewController: UIViewController {
     var counter = 0
     //
     @IBOutlet weak var genreCollectionView: UICollectionView!
+    var userLikedDeal:[LikeModel] = [] {
+        didSet {
+            DispatchQueue.main.async(execute: genreCollectionView.reloadData)
+
+           
+        }
+    }
     var books: [Book] = [] {
         didSet {
-            
             self.titleCollectionView.reloadData()
-            
         }
     }
     
@@ -94,6 +99,15 @@ class ExploreViewController: UIViewController {
    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let userId = UserId {
+            getAllUserLikedDeals(userId: userId)
+        }else{
+            if let userId = UserDefaults.standard.string(forKey: "UserId"){
+                getAllUserLikedDeals(userId: userId)
+            }
+           
+        }
+        
         genres.removeAll()
         genres.append("Newly Added")
         genres.append("Shoes")
@@ -152,6 +166,111 @@ class ExploreViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    func likeDeal(userId:String,dealId:String,index:Int){
+        MBProgressHUD.showAdded(to: view, animated: true)
+        // Add a second document with a generated ID.
+        var ref: DocumentReference? = nil
+
+        ref = db.collection("deal_like").addDocument(data: [
+            "deal_id":dealId,
+            "user_id":userId,
+            "created_at":Date()
+        ]) { err in
+            if let err = err {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print("Error adding document: \(err)")
+            } else {
+                let likeModel = LikeModel(id: "", deal_id: dealId, user_id: userId)
+                self.userLikedDeal.append(likeModel)
+                self.books[index].likesCount = self.books[index].likesCount + 1
+                let updateReference = db.collection("latest_deals").document(dealId)
+                updateReference.getDocument { (document, err) in
+                    if let err = err {
+                        print(err.localizedDescription)
+                    }
+                    else {
+                        let count = self.books[index].likesCount
+                        document?.reference.updateData([
+                            "likeCount": count
+                            ])
+                    }
+                }
+                if let userId = UserId {
+                    self.getAllUserLikedDeals(userId: userId)
+                }else{
+                    if let userId = UserDefaults.standard.string(forKey: "UserId"){
+                        self.getAllUserLikedDeals(userId: userId)
+                    }
+                }
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+        
+    }
+    func unlikeDeal(userId:String,dealId:String){
+        MBProgressHUD.showAdded(to: view, animated: true)
+        db.collection("deal_like").whereField("user_id", isEqualTo: userId).whereField("deal_id", isEqualTo: dealId).getDocuments() { (querySnapshot, err) in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    document.reference.delete { (error) in
+                        if error == nil {
+                            
+                        }else{
+                            print(error?.localizedDescription ?? "")
+                        }
+                    }
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
+    }
+    func getAllUserLikedDeals(userId:String){
+        MBProgressHUD.showAdded(to: view, animated: true)
+        db.collection("deal_like").whereField("user_id", isEqualTo: userId).getDocuments() { (querySnapshot, err) in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let para:NSMutableDictionary = NSMutableDictionary()
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    let docId = document.documentID
+                    let prod: NSMutableDictionary = NSMutableDictionary()
+                    for (key, value) in data {
+                        prod.setValue(value, forKey: "\(key)")
+                        
+                    }
+                    
+                    para.setObject(prod, forKey: docId as NSCopying)
+                }
+                if para.count > 0 {
+                    
+                    if let snapDict = para as? [String : Any] {
+                        
+                        let userLikes = UserLikeData(withJSON: snapDict)
+                        
+                        if let likes = userLikes.likes {
+                            
+                            self.userLikedDeal = likes
+                            
+                            //
+                            //
+                            self.userLikedDeal = self.userLikedDeal.sorted(by: { $0.created?.dateValue().timeIntervalSince1970 ?? 0 > $1.created?.dateValue().timeIntervalSince1970 ?? 1 })
+                            self.genreCollectionView.reloadData()
+                            
+                        }
+                    }
+                }else{
+                    self.userLikedDeal = []
+                }
+            }
+        }
+    }
     
     func queryforinfo() {
           
@@ -181,7 +300,61 @@ class ExploreViewController: UIViewController {
           })
           
       }
-    
+    func searchDealByCategory(){
+        let allCategories = ["Shoes", "Shirts", "Pants", "Jackets", "Sweaters", "Sweatshirts"]
+        titleCollectionView.alpha = 1
+        let category = genres[selectedindex]
+        var collection = db.collection("latest_deals").whereField("category", in: [category])
+        if category == "Other"{
+            collection = db.collection("latest_deals").whereField("category", notIn: allCategories)
+        }else{
+            
+        }
+        collection.limit(to: 1000)
+            .getDocuments() { (querySnapshot, err) in
+                
+                
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    let para:NSMutableDictionary = NSMutableDictionary()
+                    
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                        let docId = document.documentID
+                        let prod: NSMutableDictionary = NSMutableDictionary()
+                        for (key, value) in data {
+                            prod.setValue(value, forKey: "\(key)")
+                        }
+                        
+                        para.setObject(prod, forKey: docId as NSCopying)
+                        
+                    }
+                    if para.count > 0 {
+                        
+                        if let snapDict = para as? [String : Any] {
+                            
+                            let genre = Genre(withJSON: snapDict)
+                            
+                            if let newbooks = genre.books {
+                                
+                                self.books = newbooks
+                                
+                                //
+                                //
+                                self.books = self.books.sorted(by: { $0.created?.dateValue().timeIntervalSince1970 ?? 0 > $1.created?.dateValue().timeIntervalSince1970 ?? 1 })
+                                
+                                
+                            }
+                        }
+                    }else{
+                        self.books = []
+                    }
+                    
+                }
+                
+        }
+    }
     func queryforids() {
         
         titleCollectionView.alpha = 1
@@ -233,7 +406,51 @@ class ExploreViewController: UIViewController {
     
     var genreindex = Int()
     
+    @objc func likeButtonAction(sender : AnyObject){
+        print(sender.tag)
+        let index = sender.view.tag
+        if let userId = UserId {
+            let deal = books[index].bookID
+            likeDeal(userId: userId, dealId: deal, index: index)
+        }else{
+            if let userId = UserDefaults.standard.string(forKey: "UserId"){
+                let deal = books[index].bookID
+                likeDeal(userId: userId, dealId: deal, index: index)
+            }
+           
+        }
 
+    }
+    @objc func doubleTaplikeButtonAction(sender : AnyObject){
+       
+        print(sender.tag)
+        let index = sender.view.tag
+        
+        var isEnable = true
+        for i in userLikedDeal {
+            let book = books[index]
+            if i.deal_id == book.bookID {
+                isEnable = false
+            }
+        }
+        if isEnable {
+            if let userId = UserId {
+                let deal = books[index].bookID
+                likeDeal(userId: userId, dealId: deal, index: index)
+            }else{
+                if let userId = UserDefaults.standard.string(forKey: "UserId"){
+                    let deal = books[index].bookID
+                    likeDeal(userId: userId, dealId: deal, index: index)
+                }
+               
+            }
+        }
+        
+
+    }
+    @objc func commentButtonAction(sender : AnyObject){
+        print(sender.tag)
+    }
     
     
     func logUsePressed(referrer : String) {
@@ -313,8 +530,13 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             
             genreindex = indexPath.row
-            
-            queryforids()
+            if indexPath.row == 0 {
+                queryforids()
+                
+            }else{
+                searchDealByCategory()
+            }
+           
             
             logCategoryPressed(referrer: referrer)
             
@@ -777,8 +999,24 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                          
                          //
                      } else {
-                         
-                         
+                        let likeTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.likeButtonAction(sender:)))
+                        cell.likeButton.tag = indexPath.row
+                        cell.likeButton.isUserInteractionEnabled = true
+                        cell.likeButton.addGestureRecognizer(likeTapGestureRecognizer)
+                        
+                        let likeTapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(self.commentButtonAction(sender:)))
+                        cell.commentButton.tag = indexPath.row
+                        cell.commentButton.isUserInteractionEnabled = true
+                        cell.commentButton.addGestureRecognizer(likeTapGestureRecognizer2)
+                        
+                        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(doubleTaplikeButtonAction(sender:)))
+                        doubleTap.numberOfTapsRequired = 2
+                        doubleTap.delaysTouchesBegan = true
+                        doubleTap.cancelsTouchesInView = true
+                        cell.tag = indexPath.row
+                        cell.addGestureRecognizer(doubleTap)
+                        
+                        
                          let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "$\((book?.originalprice)!)")
                          
                          attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
@@ -790,7 +1028,21 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                              cell.pricelabel.text = "$\(newprice)"
                              
                          }
-                         
+                        cell.likeButton.setImage(#imageLiteral(resourceName: "blackheart"), for: .normal)
+                        cell.likeButton.setImage(#imageLiteral(resourceName: "blackheart"), for: .selected)
+                        cell.likeButton.isUserInteractionEnabled = true
+                        if let likecount = book?.likesCount {
+                            cell.likeButton.setTitle("\(likecount)", for: .normal)
+                            cell.likeButton.setTitle("\(likecount)", for: .selected)
+                        }
+
+                        for i in userLikedDeal {
+                            if i.deal_id == book?.bookID {
+                                cell.likeButton.setImage(#imageLiteral(resourceName: "redheart"), for: .normal)
+                                cell.likeButton.setImage(#imageLiteral(resourceName: "redheart"), for: .selected)
+                                cell.likeButton.isUserInteractionEnabled = false
+                            }
+                        }
                          //let mydate = String((book?.date?.prefix(6))!)
                          
                          cell.brandname.text = book?.brand?.lowercased()

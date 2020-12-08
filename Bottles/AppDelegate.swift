@@ -16,10 +16,11 @@ import FBSDKCoreKit
 import AppsFlyerLib
 import IQKeyboardManagerSwift
 import FirebaseMessaging
+import MBProgressHUD
 import FirebaseFirestore
 var slimeybool = Bool()
 
-
+var UserId:String?
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate,MessagingDelegate {
     var window: UIWindow?
@@ -110,7 +111,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
 //
 //     }
 //
-    
+    func getPrefrences(){
+        db.collection("profile").whereField("uid", isEqualTo: uid).getDocuments() { (querySnapshot, err) in
+           
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    UserId = document.documentID
+                    UserDefaults.standard.setValue(UserId, forKey: "UserId")
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
+    }
     func applicationDidBecomeActive(_ application: UIApplication) {
            // Start the SDK (start the IDFA timeout set above, for iOS 14 or later)
            AppsFlyerLib.shared().start()
@@ -159,6 +174,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    UserId = document.documentID
+                    UserDefaults.standard.setValue(UserId, forKey: "UserId")
+                    print("\(document.documentID) => \(document.data())")
+                }
                 if querySnapshot!.documents.count == 0{
                     var ref: DocumentReference? = nil
                     ref = db.collection("profile").addDocument(data: [
@@ -170,6 +191,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                         if let err = err {
                             print("Error adding document: \(err)")
                         } else {
+                            self.getPrefrences()
                             print("Document added with ID: \(ref!.documentID)")
                         }
                     }

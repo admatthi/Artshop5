@@ -53,6 +53,7 @@ class OnBoardingViewController: UIViewController,UITableViewDelegate,UITableView
                                     appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
                                     appDelegate.window?.rootViewController = vc
                                     appDelegate.window?.makeKeyAndVisible()
+                                    
                                 }
                             })
 
