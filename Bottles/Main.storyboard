@@ -1150,11 +1150,11 @@
                                             <outlet property="oldPriceLabel" destination="VFp-XD-soA" id="v1S-p5-OvA"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="61" id="Q9E-Q8-mFK" customClass="CommentTableViewCell" customModule="Drip" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="387" width="414" height="61"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentTableViewCell" id="Q9E-Q8-mFK" customClass="CommentTableViewCell" customModule="Drip" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="387" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q9E-Q8-mFK" id="E9b-ts-4xU">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="61"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adnan ali" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AdL-hw-hxj">
@@ -1163,18 +1163,18 @@
                                                         <constraint firstAttribute="height" constant="14" id="wG2-2H-CGA"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
-                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" red="0.53725490196078429" green="0.54117647058823526" blue="0.55294117647058827" alpha="0.89803921568627454" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slim Silhouette Formal Collar Popplin Button Cuff Shirt" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFo-Ke-joU">
-                                                    <rect key="frame" x="20" y="34" width="374" height="17"/>
+                                                    <rect key="frame" x="20" y="26" width="374" height="14"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="hFo-Ke-joU" firstAttribute="top" secondItem="AdL-hw-hxj" secondAttribute="bottom" constant="10" id="1M2-zy-caK"/>
+                                                <constraint firstItem="hFo-Ke-joU" firstAttribute="top" secondItem="AdL-hw-hxj" secondAttribute="bottom" constant="2" id="1M2-zy-caK"/>
                                                 <constraint firstItem="AdL-hw-hxj" firstAttribute="top" secondItem="E9b-ts-4xU" secondAttribute="top" constant="10" id="OxF-as-hI0"/>
                                                 <constraint firstAttribute="trailing" secondItem="hFo-Ke-joU" secondAttribute="trailing" constant="20" id="R3G-fo-tBT"/>
                                                 <constraint firstItem="AdL-hw-hxj" firstAttribute="leading" secondItem="E9b-ts-4xU" secondAttribute="leading" constant="20" id="XGB-rD-5La"/>

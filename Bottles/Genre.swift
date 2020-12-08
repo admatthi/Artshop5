@@ -37,3 +37,17 @@ public struct UserLikeData {
         })
     }
 }
+public struct CommentData {
+    let comments: [CommentModel]?
+
+    public init(withJSON json: [String: Any]) {
+        self.comments = json.enumerated().compactMap({ (_, element) -> CommentModel? in
+            let likeID = element.key
+            if let likeJSON = element.value as? [String: Any] {
+
+                return CommentModel(withID: likeID, json: likeJSON)
+            }
+            return nil
+        })
+    }
+}
