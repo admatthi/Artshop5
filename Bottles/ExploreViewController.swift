@@ -421,6 +421,33 @@ class ExploreViewController: UIViewController {
         }
 
     }
+    @objc func doubleTaplikeButtonAction(sender : AnyObject){
+       
+        print(sender.tag)
+        let index = sender.view.tag
+        
+        var isEnable = true
+        for i in userLikedDeal {
+            let book = books[index]
+            if i.deal_id == book.bookID {
+                isEnable = false
+            }
+        }
+        if isEnable {
+            if let userId = UserId {
+                let deal = books[index].bookID
+                likeDeal(userId: userId, dealId: deal, index: index)
+            }else{
+                if let userId = UserDefaults.standard.string(forKey: "UserId"){
+                    let deal = books[index].bookID
+                    likeDeal(userId: userId, dealId: deal, index: index)
+                }
+               
+            }
+        }
+        
+
+    }
     @objc func commentButtonAction(sender : AnyObject){
         print(sender.tag)
     }
@@ -982,6 +1009,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                         cell.commentButton.isUserInteractionEnabled = true
                         cell.commentButton.addGestureRecognizer(likeTapGestureRecognizer2)
                         
+                        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(doubleTaplikeButtonAction(sender:)))
+                        doubleTap.numberOfTapsRequired = 2
+                        doubleTap.delaysTouchesBegan = true
+                        doubleTap.cancelsTouchesInView = true
+                        cell.tag = indexPath.row
+                        cell.addGestureRecognizer(doubleTap)
                         
                         
                          let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "$\((book?.originalprice)!)")
