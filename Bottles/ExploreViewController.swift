@@ -1092,6 +1092,10 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                             cell.likeButton.setTitle("\(likecount)", for: .normal)
                             cell.likeButton.setTitle("\(likecount)", for: .selected)
                         }
+                        if let commentcount = book?.commentCount {
+                            cell.commentButton.setTitle("\(commentcount)", for: .normal)
+                            cell.commentButton.setTitle("\(commentcount)", for: .selected)
+                        }
 
                         for i in userLikedDeal {
                             if i.deal_id == book?.bookID {

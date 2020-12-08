@@ -11,6 +11,9 @@ import MBProgressHUD
 import FirebaseFirestore
 class DealDetailCommentsVC: UIViewController {
     var deal:Book?
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var sendbutton: UIButton!
+    @IBOutlet weak var commentTextTF: UITextField!
     var userLikedDeal:[LikeModel] = [] {
         didSet {
             
@@ -26,7 +29,11 @@ class DealDetailCommentsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let datemy = deal?.created
-        
+        sendbutton.layer.borderWidth = 1
+        sendbutton.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        commentTextTF.layer.borderWidth = 1
+        commentTextTF.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        commentTextTF.setLeftPaddingPoints(10)
         let date = datemy!.dateValue()
         dateLabel.text = date.timeAgoSinceDate()
         self.tableView.delegate = self
@@ -35,6 +42,18 @@ class DealDetailCommentsVC: UIViewController {
         tableView.estimatedRowHeight = UITableView.automaticDimension
         getAllComments(DealId: deal?.bookID ?? "")
     }
+    @IBAction func sendbuttonAction(_ sender: Any) {
+        if commentTextTF.text == "" || commentTextTF.text == nil {
+            
+        }else{
+            if let username = UserDefaults.standard.string(forKey: "UserName"),let userId = UserDefaults.standard.string(forKey: "UserId") {
+                saveComment(userName: username, userID: userId, dealiD: deal?.bookID ?? "", CommentText: commentTextTF.text ?? "")
+                self.commentTextTF.text = nil
+            }
+
+        }
+    }
+    
     func getAllComments(DealId:String){
         MBProgressHUD.showAdded(to: view, animated: true)
         db.collection("deal_comment").whereField("deal_id", isEqualTo: DealId).getDocuments() { (querySnapshot, err) in
@@ -96,6 +115,30 @@ class DealDetailCommentsVC: UIViewController {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 print("Error adding document: \(err)")
             } else {
+                let updateReference = db.collection("latest_deals").document(dealiD)
+                updateReference.getDocument { (document, err) in
+                    if let err = err {
+                        print(err.localizedDescription)
+                    }
+                    else {
+                        if let deal = self.deal {
+                            let count = deal.commentCount + 1
+                            self.deal?.commentCount = count
+                            if let cell = self.tableView.cellForRow(at: IndexPath(item: 0, section: 0)) as? DealDetailTableViewCell{
+                                cell.commentButton.setTitle("\(deal.commentCount)", for: .normal)
+                                cell.commentButton.setTitle("\(deal.commentCount)", for: .selected)
+                            }
+                            self.comments.append(CommentModel(id: ref!.documentID, deal_id: dealiD, user_id: userID, comment_text: CommentText, userName: userName))
+                            self.tableView.reloadData()
+                            document?.reference.updateData([
+                                "comment_count": count
+                                ])
+                           
+                        }
+
+                    }
+                }
+
                 MBProgressHUD.hide(for: self.view, animated: true)
                 print("Document added with ID: \(ref!.documentID)")
             }
@@ -122,6 +165,8 @@ extension DealDetailCommentsVC:UITableViewDelegate,UITableViewDataSource {
             cell.oldPriceLabel.text = "$\(deal?.originalprice ?? 0)"
             cell.likeButton.setTitle("\(deal?.likesCount ?? 0)", for: .normal)
             cell.likeButton.setTitle("\(deal?.likesCount ?? 0)", for: .selected)
+            cell.commentButton.setTitle("\(deal?.commentCount ?? 0)", for: .normal)
+            cell.commentButton.setTitle("\(deal?.commentCount ?? 0)", for: .selected)
             if let imageURLString = deal?.imageURL, let imageUrl = URL(string: imageURLString) {
             cell.dealImageView.kf.setImage(with: imageUrl)
             }
