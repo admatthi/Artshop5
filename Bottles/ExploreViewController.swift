@@ -208,7 +208,7 @@ class ExploreViewController: UIViewController {
         }
         
     }
-    func unlikeDeal(userId:String,dealId:String){
+    func unlikeDeal(userId:String,dealId:String,index:Int){
         MBProgressHUD.showAdded(to: view, animated: true)
         db.collection("deal_like").whereField("user_id", isEqualTo: userId).whereField("deal_id", isEqualTo: dealId).getDocuments() { (querySnapshot, err) in
             MBProgressHUD.hide(for: self.view, animated: true)
@@ -219,7 +219,31 @@ class ExploreViewController: UIViewController {
                     let data = document.data()
                     document.reference.delete { (error) in
                         if error == nil {
-                            
+                            if let index = self.userLikedDeal.firstIndex(where: {$0.deal_id == dealId}){
+                                self.userLikedDeal.remove(at: index)
+                            }
+                           
+                            self.books[index].likesCount = self.books[index].likesCount - 1
+                            let updateReference = db.collection("latest_deals").document(dealId)
+                            updateReference.getDocument { (document, err) in
+                                if let err = err {
+                                    print(err.localizedDescription)
+                                }
+                                else {
+                                    let count = self.books[index].likesCount
+                                    document?.reference.updateData([
+                                        "likeCount": count
+                                        ])
+                                }
+                            }
+                            if let userId = UserId {
+                                self.getAllUserLikedDeals(userId: userId)
+                            }else{
+                                if let userId = UserDefaults.standard.string(forKey: "UserId"){
+                                    self.getAllUserLikedDeals(userId: userId)
+                                }
+                            }
+                            MBProgressHUD.hide(for: self.view, animated: true)
                         }else{
                             print(error?.localizedDescription ?? "")
                         }
@@ -408,17 +432,41 @@ class ExploreViewController: UIViewController {
     
     @objc func likeButtonAction(sender : AnyObject){
         print(sender.tag)
+        var isLiked = false
         let index = sender.view.tag
-        if let userId = UserId {
-            let deal = books[index].bookID
-            likeDeal(userId: userId, dealId: deal, index: index)
+        let deal = books[index]
+        for i in userLikedDeal {
+            if i.deal_id == deal.bookID {
+                isLiked = true
+            }
+        }
+        
+        if isLiked {
+            if let userId = UserId {
+                let deal = books[index].bookID
+                unlikeDeal(userId: userId, dealId: deal, index: index)
+            }else{
+                if let userId = UserDefaults.standard.string(forKey: "UserId"){
+                    let deal = books[index].bookID
+                    unlikeDeal(userId: userId, dealId: deal, index: index)
+                }
+               
+            }
+            
         }else{
-            if let userId = UserDefaults.standard.string(forKey: "UserId"){
+            
+            if let userId = UserId {
                 let deal = books[index].bookID
                 likeDeal(userId: userId, dealId: deal, index: index)
+            }else{
+                if let userId = UserDefaults.standard.string(forKey: "UserId"){
+                    let deal = books[index].bookID
+                    likeDeal(userId: userId, dealId: deal, index: index)
+                }
+               
             }
-           
         }
+
 
     }
     @objc func doubleTaplikeButtonAction(sender : AnyObject){
@@ -1040,7 +1088,7 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                             if i.deal_id == book?.bookID {
                                 cell.likeButton.setImage(#imageLiteral(resourceName: "redheart"), for: .normal)
                                 cell.likeButton.setImage(#imageLiteral(resourceName: "redheart"), for: .selected)
-                                cell.likeButton.isUserInteractionEnabled = false
+//                                cell.likeButton.isUserInteractionEnabled = false
                             }
                         }
                          //let mydate = String((book?.date?.prefix(6))!)

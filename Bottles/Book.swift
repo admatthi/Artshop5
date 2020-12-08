@@ -58,7 +58,7 @@ struct Book {
 
     var likesCount = 0
     let created: Timestamp?
-
+    var likedByme:Bool = false
 
 
     init(withID id: String, json: [String: Any]) {
