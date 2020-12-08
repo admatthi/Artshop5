@@ -498,7 +498,13 @@ class ExploreViewController: UIViewController {
     }
     @objc func commentButtonAction(sender : AnyObject){
         print(sender.tag)
-        
+        let index = sender.view.tag
+        let deal = books[index]
+        let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = mainStoryboardIpad.instantiateViewController(withIdentifier: "DealDetailCommentsVC") as! DealDetailCommentsVC
+        vc.userLikedDeal = self.userLikedDeal
+        vc.deal = deal
+        self.present(vc, animated: true, completion: nil)
     }
     
     
@@ -1054,6 +1060,8 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                         cell.likeButton.addGestureRecognizer(likeTapGestureRecognizer)
                         
                         let likeTapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(self.commentButtonAction(sender:)))
+                        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.commentButtonAction(sender:)))
+                        cell.addGestureRecognizer(longPressRecognizer)
                         cell.commentButton.tag = indexPath.row
                         cell.commentButton.isUserInteractionEnabled = true
                         cell.commentButton.addGestureRecognizer(likeTapGestureRecognizer2)
