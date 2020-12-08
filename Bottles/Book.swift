@@ -57,14 +57,16 @@ struct Book {
     let category: String?
 
     var likesCount = 0
+    var commentCount = 0
     let created: Timestamp?
-
+    var likedByme:Bool = false
 
 
     init(withID id: String, json: [String: Any]) {
         self.bookID = id
         self.originalprice = json["orignal_price"] as? Int
         self.brand = json["brand"] as? String
+        self.commentCount = json["comment_count"] as? Int ?? 0
         self.category = json["category"] as? String
         self.created = json["created_at"] as? Timestamp
         self.likesCount = json["likeCount"] as? Int ?? 0

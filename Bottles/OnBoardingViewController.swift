@@ -14,7 +14,7 @@ class OnBoardingViewController: UIViewController,UITableViewDelegate,UITableView
 
     var allBrands = ["Gucci","Dior","Versace","Off White","Supreme","Louis Vuitton","Adidas","Balencigia","Common Projects","Georgio Armani","Hermes","Prada","Ralph Lauren","J. Crew","Lululemon",]
     var selectedBrands:[String] = []
-
+    var userName:String?
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var saveButton: UIButton!
     override func viewDidLoad() {
@@ -40,9 +40,12 @@ class OnBoardingViewController: UIViewController,UITableViewDelegate,UITableView
                             print(err.localizedDescription)
                         }
                         else {
+                            UserName = self.userName
+                            UserDefaults.standard.setValue(UserName, forKey: "UserName")
                             MBProgressHUD.showAdded(to: self.view, animated: true)
                             document?.reference.updateData([
-                                "brands": self.selectedBrands
+                                "brands": self.selectedBrands,
+                                "userName":self.userName
                             ],completion: { (error) in
                                 MBProgressHUD.hide(for: self.view, animated: true)
                                 if error == nil {
