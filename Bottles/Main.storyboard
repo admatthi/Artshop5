@@ -887,10 +887,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oct 02" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hw7-yU-28F">
-                                                    <rect key="frame" x="10" y="5" width="83" height="24"/>
+                                                    <rect key="frame" x="10" y="5" width="60" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="NjI-2E-bAX"/>
-                                                        <constraint firstAttribute="width" constant="83" id="tmw-2z-5Hr"/>
+                                                        <constraint firstAttribute="width" constant="60" id="tmw-2z-5Hr"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -929,10 +929,17 @@
                                                         </button>
                                                     </subviews>
                                                 </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOLD OUT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQc-L5-5QZ">
+                                                    <rect key="frame" x="75" y="8.5" width="75.5" height="17.5"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                    <color key="textColor" red="0.30980392159999998" green="0.46274509800000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="ar7-xg-DXP" secondAttribute="trailing" constant="16" id="1mf-go-VB5"/>
                                                 <constraint firstItem="NhB-w7-lOv" firstAttribute="top" secondItem="j2t-bk-AMx" secondAttribute="bottom" constant="8" id="AMt-qb-wfu"/>
+                                                <constraint firstItem="YQc-L5-5QZ" firstAttribute="leading" secondItem="hw7-yU-28F" secondAttribute="trailing" constant="5" id="AYe-69-IF5"/>
                                                 <constraint firstItem="09C-8E-dG5" firstAttribute="top" secondItem="NhB-w7-lOv" secondAttribute="bottom" constant="45" id="ChC-9i-WHe"/>
                                                 <constraint firstItem="v6U-HW-noK" firstAttribute="top" secondItem="09C-8E-dG5" secondAttribute="bottom" id="EYH-vM-Hpt"/>
                                                 <constraint firstAttribute="trailing" secondItem="fs7-PQ-vsD" secondAttribute="trailing" id="Eet-9N-blQ"/>
@@ -940,6 +947,7 @@
                                                 <constraint firstItem="j2t-bk-AMx" firstAttribute="top" secondItem="hw7-yU-28F" secondAttribute="bottom" constant="8" id="JJn-tJ-3mI"/>
                                                 <constraint firstItem="tN8-2f-m9h" firstAttribute="top" secondItem="ar7-xg-DXP" secondAttribute="bottom" constant="-0.5" id="QIr-un-sZ5"/>
                                                 <constraint firstItem="j2t-bk-AMx" firstAttribute="leading" secondItem="09C-8E-dG5" secondAttribute="trailing" constant="-64" id="RhU-dn-jaF"/>
+                                                <constraint firstItem="YQc-L5-5QZ" firstAttribute="centerY" secondItem="hw7-yU-28F" secondAttribute="centerY" id="SNs-dM-vV1"/>
                                                 <constraint firstAttribute="trailing" secondItem="NhB-w7-lOv" secondAttribute="trailing" constant="16" id="Wh9-pI-Y64"/>
                                                 <constraint firstItem="tN8-2f-m9h" firstAttribute="leading" secondItem="09C-8E-dG5" secondAttribute="trailing" constant="5" id="fCb-Vd-ke2"/>
                                                 <constraint firstItem="ar7-xg-DXP" firstAttribute="leading" secondItem="41T-JO-5Mn" secondAttribute="leading" constant="16" id="gQ2-xc-Fk6"/>
@@ -965,6 +973,7 @@
                                             <outlet property="imagelabel" destination="j2t-bk-AMx" id="eLn-hE-wLc"/>
                                             <outlet property="likeButton" destination="cRF-u4-k11" id="93B-Nd-Wus"/>
                                             <outlet property="pricelabel" destination="tN8-2f-m9h" id="llb-gT-0ja"/>
+                                            <outlet property="soldOutLabel" destination="YQc-L5-5QZ" id="UYJ-fy-qfT"/>
                                             <outlet property="strikethrough" destination="09C-8E-dG5" id="dOe-GP-lpV"/>
                                             <outlet property="titlelabel" destination="ar7-xg-DXP" id="6mY-Ds-Lo4"/>
                                         </connections>

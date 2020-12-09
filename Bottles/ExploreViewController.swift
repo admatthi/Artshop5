@@ -1135,7 +1135,9 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
 
                         
                          cell.titlelabel.text = book?.name?.capitalized
-                         
+
+
+                        
                          cell.imagelabel.alpha = 1
                          cell.datelabel.alpha = 1
                          cell.titlelabel.alpha = 1
@@ -1145,7 +1147,15 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                          
                          cell.layer.borderWidth = 1
                          cell.layer.borderColor = lightg.cgColor
-                         
+                        if let bookdata = book{
+                            if bookdata.expired {
+                                cell.soldOutLabel.isHidden = false
+                                cell.imagelabel.alpha = 0.25
+                            }else{
+                                cell.soldOutLabel.isHidden = true
+                                cell.imagelabel.alpha = 1
+                            }
+                        }
                          
                          if let imageURLString = book?.imageURL, let imageUrl = URL(string: imageURLString) {
                              
