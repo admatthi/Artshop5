@@ -502,6 +502,7 @@ class ExploreViewController: UIViewController {
         let deal = books[index]
         let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = mainStoryboardIpad.instantiateViewController(withIdentifier: "DealDetailCommentsVC") as! DealDetailCommentsVC
+        vc.modalPresentationStyle = .fullScreen
         vc.userLikedDeal = self.userLikedDeal
         vc.deal = deal
         self.present(vc, animated: true, completion: nil)
