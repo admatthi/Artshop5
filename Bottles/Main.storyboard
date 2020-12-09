@@ -1128,11 +1128,18 @@
                                                         </button>
                                                     </subviews>
                                                 </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOLD OUT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="998-K1-Es2">
+                                                    <rect key="frame" x="10" y="10" width="88" height="20.5"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" red="0.30980392159999998" green="0.46274509800000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="4yC-Cw-jPV" firstAttribute="top" secondItem="T0L-I8-Rgj" secondAttribute="bottom" constant="10" id="1R7-5c-POK"/>
                                                 <constraint firstItem="fxg-MH-uFW" firstAttribute="centerX" secondItem="CUf-0f-UOd" secondAttribute="centerX" id="Acg-Qp-Hef"/>
                                                 <constraint firstItem="fxg-MH-uFW" firstAttribute="top" secondItem="2Cv-WE-1kb" secondAttribute="bottom" constant="2" id="Art-xh-PUu"/>
+                                                <constraint firstItem="998-K1-Es2" firstAttribute="leading" secondItem="CUf-0f-UOd" secondAttribute="leading" constant="10" id="FSG-uq-s4W"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="qmg-zs-4aB" secondAttribute="trailing" constant="30" id="NSx-VC-Gfx"/>
                                                 <constraint firstItem="qmg-zs-4aB" firstAttribute="leading" secondItem="CUf-0f-UOd" secondAttribute="leadingMargin" constant="30" id="Qrm-mP-0tr"/>
                                                 <constraint firstItem="qmg-zs-4aB" firstAttribute="top" secondItem="4yC-Cw-jPV" secondAttribute="bottom" constant="2" id="TsB-xz-ll0"/>
@@ -1143,6 +1150,7 @@
                                                 <constraint firstItem="e9a-Dl-Aza" firstAttribute="centerX" secondItem="CUf-0f-UOd" secondAttribute="centerX" id="bCp-d1-2Vf"/>
                                                 <constraint firstItem="2Cv-WE-1kb" firstAttribute="top" secondItem="qmg-zs-4aB" secondAttribute="bottom" constant="2" id="cRv-dT-rTk"/>
                                                 <constraint firstItem="2Cv-WE-1kb" firstAttribute="centerX" secondItem="qmg-zs-4aB" secondAttribute="centerX" id="cpg-pF-qhl"/>
+                                                <constraint firstItem="998-K1-Es2" firstAttribute="top" secondItem="CUf-0f-UOd" secondAttribute="top" constant="10" id="krj-Po-mTe"/>
                                                 <constraint firstItem="e9a-Dl-Aza" firstAttribute="top" secondItem="fxg-MH-uFW" secondAttribute="bottom" constant="2" id="yJW-B9-dPf"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1155,6 +1163,7 @@
                                             <outlet property="likeButton" destination="TDt-3q-ozB" id="nWc-LV-3s0"/>
                                             <outlet property="newPriceLabel" destination="eYP-cN-w1K" id="hHg-SD-UaE"/>
                                             <outlet property="oldPriceLabel" destination="VFp-XD-soA" id="v1S-p5-OvA"/>
+                                            <outlet property="soldoutLabel" destination="998-K1-Es2" id="bov-td-qcX"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentTableViewCell" id="Q9E-Q8-mFK" customClass="CommentTableViewCell" customModule="Drip" customModuleProvider="target">

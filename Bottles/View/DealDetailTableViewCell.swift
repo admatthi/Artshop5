@@ -10,6 +10,7 @@ import UIKit
 
 class DealDetailTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var soldoutLabel: UILabel!
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var brandNameLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!

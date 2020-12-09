@@ -29,6 +29,7 @@ class DealDetailCommentsVC: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.modalPresentationStyle = .fullScreen
         markAsExpiredButton.layer.cornerRadius = 5
         markAsExpiredButton.layer.borderColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
@@ -210,6 +211,15 @@ extension DealDetailCommentsVC:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DealDetailTableViewCell", for: indexPath) as! DealDetailTableViewCell
+            if let bookdata = deal{
+                if bookdata.expired {
+                    cell.soldoutLabel.isHidden = false
+                    cell.dealImageView.alpha = 0.25
+                }else{
+                    cell.soldoutLabel.isHidden = true
+                    cell.dealImageView.alpha = 1
+                }
+            }
             cell.brandNameLabel.text = deal?.brand
             cell.detailLabel.text = deal?.name
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "$\((deal?.originalprice)!)")
