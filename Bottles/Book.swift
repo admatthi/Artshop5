@@ -61,10 +61,12 @@ struct Book {
     var commentCount = 0
     let created: Timestamp?
     var likedByme:Bool = false
+    var expiredRequest:[String]? = []
 
 
     init(withID id: String, json: [String: Any]) {
         self.bookID = id
+        self.expiredRequest = json["expiredRequest"] as? [String] ?? []
         self.originalprice = json["orignal_price"] as? Int
         self.expired = json["expired"] as? Bool ?? false
         self.expirationCount = json["expirationCount"] as? Int ?? 0
