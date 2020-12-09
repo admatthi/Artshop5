@@ -55,7 +55,8 @@ struct Book {
     let newprice: Int?
     let brand: String?
     let category: String?
-
+    var expired:Bool = false
+    var expirationCount:Int
     var likesCount = 0
     var commentCount = 0
     let created: Timestamp?
@@ -65,6 +66,8 @@ struct Book {
     init(withID id: String, json: [String: Any]) {
         self.bookID = id
         self.originalprice = json["orignal_price"] as? Int
+        self.expired = json["expired"] as? Bool ?? false
+        self.expirationCount = json["expirationCount"] as? Int ?? 0
         self.brand = json["brand"] as? String
         self.commentCount = json["comment_count"] as? Int ?? 0
         self.category = json["category"] as? String

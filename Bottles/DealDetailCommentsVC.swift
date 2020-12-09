@@ -11,6 +11,7 @@ import MBProgressHUD
 import FirebaseFirestore
 class DealDetailCommentsVC: UIViewController {
     var deal:Book?
+    @IBOutlet weak var markAsExpiredButton: UIButton!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var sendbutton: UIButton!
     @IBOutlet weak var commentTextTF: UITextField!
@@ -28,6 +29,9 @@ class DealDetailCommentsVC: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        markAsExpiredButton.layer.cornerRadius = 5
+        markAsExpiredButton.layer.borderColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+        markAsExpiredButton.layer.borderWidth = 1
         let datemy = deal?.created
         sendbutton.layer.borderWidth = 1
         sendbutton.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
@@ -53,6 +57,11 @@ class DealDetailCommentsVC: UIViewController {
 
         }
     }
+    @IBAction func markAsExpiredButtonAction(_ sender: Any) {
+        
+        markAsExpired(dealId: deal?.bookID ?? "")
+    }
+    
     
     func getAllComments(DealId:String){
         MBProgressHUD.showAdded(to: view, animated: true)
@@ -98,6 +107,33 @@ class DealDetailCommentsVC: UIViewController {
     
     @IBAction func dismissButtonAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    func markAsExpired(dealId:String){
+        MBProgressHUD.showAdded(to: view, animated: true)
+        let updateReference = db.collection("latest_deals").document(dealId)
+        updateReference.getDocument { (document, err) in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let err = err {
+                print(err.localizedDescription)
+            }
+            else {
+                if let deal = self.deal {
+                    let count = deal.expirationCount + 1
+                    if deal.expirationCount >= 2 {
+                        document?.reference.updateData([
+                            "expirationCount": count,
+                            "expired":true
+                            ])
+                    }else{
+                        document?.reference.updateData([
+                            "expirationCount": count,
+                            ])
+                    }
+
+                }
+
+            }
+        }
     }
     func saveComment(userName:String,userID:String,dealiD:String,CommentText:String){
         MBProgressHUD.showAdded(to: view, animated: true)
