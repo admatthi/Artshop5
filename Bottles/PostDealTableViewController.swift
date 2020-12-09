@@ -241,7 +241,9 @@ class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
             "url": dealurl,
             "website":dealurl,
             "category":category,
-            "created_at":Date()
+            "created_at":Date(),
+            "expirationCount":0,
+            "expired":false
         ]) { err in
             if let err = err {
                 MBProgressHUD.hide(for: self.view, animated: true)

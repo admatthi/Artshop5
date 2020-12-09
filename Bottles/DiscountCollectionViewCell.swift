@@ -12,6 +12,7 @@ class DiscountCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var blurimage: UIImageView!
+    @IBOutlet weak var soldOutLabel: UILabel!
     @IBOutlet weak var pricelabel: UILabel!
     @IBOutlet weak var strikethrough: UILabel!
     @IBOutlet weak var titlelabel: UILabel!
