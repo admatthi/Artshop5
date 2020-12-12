@@ -12,7 +12,7 @@ import MBProgressHUD
 
 class OnBoardingViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
-    var allBrands = ["Gucci","Dior","Versace","Off White","Supreme","Louis Vuitton","Adidas","Balencigia","Common Projects","Georgio Armani","Hermes","Prada","Ralph Lauren","J. Crew","Lululemon",]
+    var allBrands = ["Gucci","Dior","Versace","Off White","Supreme","Louis Vuitton","Adidas","Balenciaga","Common Projects","Georgio Armani","Hermes","Prada","Ralph Lauren","J. Crew","Lululemon",]
     var selectedBrands:[String] = []
     var userName:String?
     @IBOutlet weak var tableView: UITableView!
