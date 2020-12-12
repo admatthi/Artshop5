@@ -855,16 +855,16 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="DA3-u8-4N6"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adidas" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhB-w7-lOv">
-                                                    <rect key="frame" x="16" y="202" width="179" height="14"/>
+                                                    <rect key="frame" x="16" y="207" width="179" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14" id="6aG-gn-RXM"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -886,12 +886,12 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$29" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tN8-2f-m9h">
-                                                    <rect key="frame" x="109" y="261" width="70" height="27"/>
+                                                    <rect key="frame" x="109" y="260" width="70" height="27"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="RVS-u8-ZmL"/>
                                                         <constraint firstAttribute="height" constant="27" id="zzP-VL-jzD"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -947,14 +947,14 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="ar7-xg-DXP" secondAttribute="trailing" constant="16" id="1mf-go-VB5"/>
-                                                <constraint firstItem="NhB-w7-lOv" firstAttribute="top" secondItem="j2t-bk-AMx" secondAttribute="bottom" constant="8" id="AMt-qb-wfu"/>
+                                                <constraint firstItem="NhB-w7-lOv" firstAttribute="top" secondItem="j2t-bk-AMx" secondAttribute="bottom" constant="13" id="AMt-qb-wfu"/>
                                                 <constraint firstItem="YQc-L5-5QZ" firstAttribute="leading" secondItem="hw7-yU-28F" secondAttribute="trailing" constant="5" id="AYe-69-IF5"/>
-                                                <constraint firstItem="09C-8E-dG5" firstAttribute="top" secondItem="NhB-w7-lOv" secondAttribute="bottom" constant="45" id="ChC-9i-WHe"/>
+                                                <constraint firstItem="09C-8E-dG5" firstAttribute="top" secondItem="NhB-w7-lOv" secondAttribute="bottom" constant="40" id="ChC-9i-WHe"/>
                                                 <constraint firstItem="v6U-HW-noK" firstAttribute="top" secondItem="09C-8E-dG5" secondAttribute="bottom" id="EYH-vM-Hpt"/>
                                                 <constraint firstAttribute="trailing" secondItem="fs7-PQ-vsD" secondAttribute="trailing" id="Eet-9N-blQ"/>
                                                 <constraint firstItem="hw7-yU-28F" firstAttribute="top" secondItem="41T-JO-5Mn" secondAttribute="top" constant="5" id="IAh-e0-gfx"/>
                                                 <constraint firstItem="j2t-bk-AMx" firstAttribute="top" secondItem="hw7-yU-28F" secondAttribute="bottom" constant="8" id="JJn-tJ-3mI"/>
-                                                <constraint firstItem="tN8-2f-m9h" firstAttribute="top" secondItem="ar7-xg-DXP" secondAttribute="bottom" constant="-0.5" id="QIr-un-sZ5"/>
+                                                <constraint firstItem="tN8-2f-m9h" firstAttribute="top" secondItem="ar7-xg-DXP" secondAttribute="bottom" constant="-1.5" id="QIr-un-sZ5"/>
                                                 <constraint firstItem="j2t-bk-AMx" firstAttribute="leading" secondItem="09C-8E-dG5" secondAttribute="trailing" constant="-64" id="RhU-dn-jaF"/>
                                                 <constraint firstItem="YQc-L5-5QZ" firstAttribute="centerY" secondItem="hw7-yU-28F" secondAttribute="centerY" id="SNs-dM-vV1"/>
                                                 <constraint firstAttribute="trailing" secondItem="NhB-w7-lOv" secondAttribute="trailing" constant="16" id="Wh9-pI-Y64"/>
@@ -962,7 +962,7 @@
                                                 <constraint firstItem="ar7-xg-DXP" firstAttribute="leading" secondItem="41T-JO-5Mn" secondAttribute="leading" constant="16" id="gQ2-xc-Fk6"/>
                                                 <constraint firstItem="fs7-PQ-vsD" firstAttribute="top" secondItem="41T-JO-5Mn" secondAttribute="top" constant="5" id="irq-KD-afy"/>
                                                 <constraint firstItem="v6U-HW-noK" firstAttribute="centerX" secondItem="41T-JO-5Mn" secondAttribute="centerX" id="nQ5-qj-Ucc"/>
-                                                <constraint firstItem="ar7-xg-DXP" firstAttribute="top" secondItem="NhB-w7-lOv" secondAttribute="bottom" constant="1.5" id="od5-uw-N8A"/>
+                                                <constraint firstItem="ar7-xg-DXP" firstAttribute="top" secondItem="NhB-w7-lOv" secondAttribute="bottom" constant="-3.5" id="od5-uw-N8A"/>
                                                 <constraint firstItem="hw7-yU-28F" firstAttribute="leading" secondItem="41T-JO-5Mn" secondAttribute="leading" constant="10" id="wHo-c8-7iK"/>
                                                 <constraint firstItem="NhB-w7-lOv" firstAttribute="leading" secondItem="41T-JO-5Mn" secondAttribute="leading" constant="16" id="yTJ-CE-YEC"/>
                                                 <constraint firstItem="j2t-bk-AMx" firstAttribute="centerX" secondItem="41T-JO-5Mn" secondAttribute="centerX" id="zOd-Ah-S9b"/>
