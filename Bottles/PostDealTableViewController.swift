@@ -14,7 +14,7 @@ import Kingfisher
 import FirebaseFirestore
 import DropDown
 import ActionSheetPicker_3_0
-class PostDealTableViewController: UITableViewController,UITextFieldDelegate {
+class PostDealTableViewController: UIViewController,UITextFieldDelegate {
     let dropDown = DropDown()
     @IBOutlet weak var dealUrlTF: UITextField!
     @IBOutlet weak var brandTF: UITextField!
