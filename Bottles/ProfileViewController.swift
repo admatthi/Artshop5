@@ -33,6 +33,10 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
         swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
         self.view.addGestureRecognizer(swipeLeft)
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        saveBrandsPrefrences()
+    }
     @objc func swiped(_ gesture: UISwipeGestureRecognizer) {
        if gesture.direction == .left {
            if (self.tabBarController?.selectedIndex)! < 3 { // set your total tabs here
@@ -112,7 +116,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
         }
     }
     func saveBrandsPrefrences(){
-        MBProgressHUD.showAdded(to: view, animated: true)
+//        MBProgressHUD.showAdded(to: view, animated: true)
         db.collection("profile").whereField("uid", isEqualTo: uid).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -122,7 +126,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 }else{
                     let updateReference = db.collection("profile").document(querySnapshot!.documents.first?.documentID ?? "")
                     updateReference.getDocument { (document, err) in
-                        MBProgressHUD.hide(for: self.view, animated: true)
+//                        MBProgressHUD.hide(for: self.view, animated: true)
                         if let err = err {
                             print(err.localizedDescription)
                         }
@@ -130,7 +134,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
                             document?.reference.updateData([
                                 "brands": self.selectedBrands
                                 ])
-                            self.showAlert(withTile: "", andMessage: "Brand's Updated Successfully")
+//                            self.showAlert(withTile: "", andMessage: "Brand's Updated Successfully")
                         }
                     }
 

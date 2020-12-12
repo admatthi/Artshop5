@@ -361,7 +361,7 @@
                                     <action selector="notificationSwitchValueChanged:" destination="vfg-tX-qYq" eventType="valueChanged" id="tR6-3g-Hqv"/>
                                 </connections>
                             </switch>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Zd-8F-Vaz">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Zd-8F-Vaz">
                                 <rect key="frame" x="335" y="49.5" width="69" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="Rou-Hx-xss"/>
