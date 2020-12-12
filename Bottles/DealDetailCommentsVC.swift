@@ -232,6 +232,20 @@ extension DealDetailCommentsVC:UITableViewDelegate,UITableViewDataSource {
             cell.likeButton.setTitle("\(deal?.likesCount ?? 0)", for: .selected)
             cell.commentButton.setTitle("\(deal?.commentCount ?? 0)", for: .normal)
             cell.commentButton.setTitle("\(deal?.commentCount ?? 0)", for: .selected)
+            cell.likeButton.setImage(#imageLiteral(resourceName: "blackheart"), for: .normal)
+            cell.likeButton.setImage(#imageLiteral(resourceName: "blackheart"), for: .selected)
+            cell.likeButton.setTitleColor(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), for: .normal)
+            cell.likeButton.setTitleColor(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), for: .selected)
+            cell.likeButton.setImage(#imageLiteral(resourceName: "blackheart"), for: .selected)
+            for i in userLikedDeal {
+                if i.deal_id == deal?.bookID {
+                    cell.likeButton.setImage(#imageLiteral(resourceName: "redheart"), for: .normal)
+                    cell.likeButton.setImage(#imageLiteral(resourceName: "redheart"), for: .selected)
+                    cell.likeButton.setTitleColor(#colorLiteral(red: 0.9627978206, green: 0.3363226652, blue: 0.2758938074, alpha: 1), for: .normal)
+                    cell.likeButton.setTitleColor(#colorLiteral(red: 0.9627978206, green: 0.3363226652, blue: 0.2758938074, alpha: 1), for: .selected)
+//                                cell.likeButton.isUserInteractionEnabled = false
+                }
+            }
             if let imageURLString = deal?.imageURL, let imageUrl = URL(string: imageURLString) {
             cell.dealImageView.kf.setImage(with: imageUrl)
             }
