@@ -1088,6 +1088,9 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                          }
                         cell.likeButton.setImage(#imageLiteral(resourceName: "blackheart"), for: .normal)
                         cell.likeButton.setImage(#imageLiteral(resourceName: "blackheart"), for: .selected)
+                        cell.likeButton.setTitleColor(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), for: .normal)
+                        cell.likeButton.setTitleColor(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), for: .selected)
+                        cell.likeButton.setImage(#imageLiteral(resourceName: "blackheart"), for: .selected)
                         cell.likeButton.isUserInteractionEnabled = true
                         if let likecount = book?.likesCount {
                             cell.likeButton.setTitle("\(likecount)", for: .normal)
@@ -1096,12 +1099,15 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                         if let commentcount = book?.commentCount {
                             cell.commentButton.setTitle("\(commentcount)", for: .normal)
                             cell.commentButton.setTitle("\(commentcount)", for: .selected)
+
                         }
 
                         for i in userLikedDeal {
                             if i.deal_id == book?.bookID {
                                 cell.likeButton.setImage(#imageLiteral(resourceName: "redheart"), for: .normal)
                                 cell.likeButton.setImage(#imageLiteral(resourceName: "redheart"), for: .selected)
+                                cell.likeButton.setTitleColor(#colorLiteral(red: 0.9627978206, green: 0.3363226652, blue: 0.2758938074, alpha: 1), for: .normal)
+                                cell.likeButton.setTitleColor(#colorLiteral(red: 0.9627978206, green: 0.3363226652, blue: 0.2758938074, alpha: 1), for: .selected)
 //                                cell.likeButton.isUserInteractionEnabled = false
                             }
                         }
