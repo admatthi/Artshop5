@@ -213,8 +213,6 @@ class PostDealTableViewController: UIViewController,UITextFieldDelegate {
             showAlert(withTile: "Validation Error", andMessage: "Please add Original Price")
         }else if categoryTF.text == "" {
             showAlert(withTile: "Validation Error", andMessage: "Please Select Atleast one Category")
-        }else if brandImageView.image == nil {
-            showAlert(withTile: "Validation Error" , andMessage: "brand Url Did't able to get brand image please try other Rich url")
         }else if currentPrice >= originalPrice {
             showAlert(withTile: "Validation Error" , andMessage: "Current Price must be less than the orginal price.")
         }else{
