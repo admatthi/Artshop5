@@ -154,6 +154,8 @@ class DealDetailCommentsVC: UIViewController,UITextFieldDelegate {
                             "expired":true,
                             "expiredRequest":self.deal?.expiredRequest ?? []
                             ])
+                        self.deal?.expired = true
+                        DispatchQueue.main.async(execute: self.tableView.reloadData)
                     }else{
                         document?.reference.updateData([
                             "expirationCount": count,
