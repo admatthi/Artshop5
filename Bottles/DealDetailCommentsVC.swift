@@ -32,7 +32,7 @@ class DealDetailCommentsVC: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         commentTextTF.delegate = self
         self.modalPresentationStyle = .fullScreen
-        markAsExpiredButton.layer.cornerRadius = 5
+        markAsExpiredButton.layer.cornerRadius = 10
         markAsExpiredButton.layer.borderColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
         markAsExpiredButton.layer.borderWidth = 1
         let datemy = deal?.created
