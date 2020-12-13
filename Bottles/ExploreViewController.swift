@@ -46,7 +46,7 @@ var uid = String()
 var ref : DatabaseReference?
 var refer = String()
 
-class ExploreViewController: UIViewController {
+class ExploreViewController: UIViewController,UITabBarControllerDelegate {
     var fcmToken:String = ""
     @IBOutlet weak var titleCollectionView: UICollectionView!
     var counter = 0
@@ -99,6 +99,8 @@ class ExploreViewController: UIViewController {
    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.delegate = self
+        
         if let userId = UserId {
             getAllUserLikedDeals(userId: userId)
         }else{
@@ -251,6 +253,16 @@ class ExploreViewController: UIViewController {
                     print("\(document.documentID) => \(document.data())")
                 }
             }
+        }
+    }
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+
+        if viewController is ExploreViewController {
+            print("First tab")
+            if books.count > 0 {
+            self.titleCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+            }
+            
         }
     }
     func getAllUserLikedDeals(userId:String){
