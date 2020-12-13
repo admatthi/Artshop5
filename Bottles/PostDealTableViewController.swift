@@ -36,9 +36,6 @@ class PostDealTableViewController: UIViewController,UITextFieldDelegate {
             
         dealUrlTF.delegate = self
         brandTF.delegate = self
-        submitbutton.layer.borderColor = UIColor.black.cgColor
-        submitbutton.layer.borderWidth = 1.0
-        submitbutton.layer.cornerRadius = 10
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRight)
