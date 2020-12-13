@@ -27,6 +27,10 @@ class PostDealTableViewController: UIViewController,UITextFieldDelegate {
     var imageUrl :String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        dealUrlTF.setLeftPaddingPoints(10)
+        brandTF.setLeftPaddingPoints(10)
+        categoryTF.setLeftPaddingPoints(10)
+        itemTF.setLeftPaddingPoints(10)
         currentPriceTF.setLeftPaddingPoints(15)
         originalPriceTF.setLeftPaddingPoints(15)
         let notificationCenter = NotificationCenter.default
@@ -69,17 +73,17 @@ class PostDealTableViewController: UIViewController,UITextFieldDelegate {
 //            let description = data?.description
 //            let keywords = data?.keywords
 //            let imageUrl = data?.topImage
-//           
+//
 //            let videoUrl = data?.topVideo
 //            let datePublished = data?.datePublished
-//            
+//
 //            self.imageUrl = data?.topImage
 //            if let url = URL(string: data?.topImage ?? ""){
 //                self.brandImageView.kf.setImage(with: url)
 //            }
-//            
-//           
-//            
+//
+//
+//
 //        })
 //    }else{
 ////        dealUrlTF.text = ""
