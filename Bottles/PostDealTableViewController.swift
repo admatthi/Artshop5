@@ -48,70 +48,42 @@ class PostDealTableViewController: UIViewController,UITextFieldDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        let pasteboard = UIPasteboard.general
-        if let text = pasteboard.string , pasteboard.hasURLs{
-            print(text)
-            dealUrlTF.text = text
-            self.imageUrl = nil
-            self.brandImageView.image = nil
-            guard let articleUrl = URL(string: dealUrlTF.text ?? "") else { return }
-            MBProgressHUD.showAdded(to: view, animated: true)
-            Readability.parse(url: articleUrl, completion: { data in
-                MBProgressHUD.hide(for: self.view, animated: true)
-                let title = data?.title
-                let description = data?.description
-                let keywords = data?.keywords
-                let imageUrl = data?.topImage
-               
-                let videoUrl = data?.topVideo
-                let datePublished = data?.datePublished
-                
-                self.imageUrl = data?.topImage
-                if let url = URL(string: data?.topImage ?? ""){
-                    self.brandImageView.kf.setImage(with: url)
-                }
-                
-               
-                
-            })
-        }else{
-//            dealUrlTF.text = ""
-        }
+
     }
     @objc func appMovedToBackground() {
        print("app enters background")
    }
 
    @objc func appCameToForeground() {
-    let pasteboard = UIPasteboard.general
-    if let text = pasteboard.string , pasteboard.hasURLs{
-        print(text)
-        dealUrlTF.text = text
-        self.imageUrl = nil
-        self.brandImageView.image = nil
-        guard let articleUrl = URL(string: dealUrlTF.text ?? "") else { return }
-        MBProgressHUD.showAdded(to: view, animated: true)
-        Readability.parse(url: articleUrl, completion: { data in
-            MBProgressHUD.hide(for: self.view, animated: true)
-            let title = data?.title
-            let description = data?.description
-            let keywords = data?.keywords
-            let imageUrl = data?.topImage
-           
-            let videoUrl = data?.topVideo
-            let datePublished = data?.datePublished
-            
-            self.imageUrl = data?.topImage
-            if let url = URL(string: data?.topImage ?? ""){
-                self.brandImageView.kf.setImage(with: url)
-            }
-            
-           
-            
-        })
-    }else{
-//        dealUrlTF.text = ""
-    }
+//    let pasteboard = UIPasteboard.general
+//    if let text = pasteboard.string , pasteboard.hasURLs{
+//        print(text)
+//        dealUrlTF.text = text
+//        self.imageUrl = nil
+//        self.brandImageView.image = nil
+//        guard let articleUrl = URL(string: dealUrlTF.text ?? "") else { return }
+//        MBProgressHUD.showAdded(to: view, animated: true)
+//        Readability.parse(url: articleUrl, completion: { data in
+//            MBProgressHUD.hide(for: self.view, animated: true)
+//            let title = data?.title
+//            let description = data?.description
+//            let keywords = data?.keywords
+//            let imageUrl = data?.topImage
+//           
+//            let videoUrl = data?.topVideo
+//            let datePublished = data?.datePublished
+//            
+//            self.imageUrl = data?.topImage
+//            if let url = URL(string: data?.topImage ?? ""){
+//                self.brandImageView.kf.setImage(with: url)
+//            }
+//            
+//           
+//            
+//        })
+//    }else{
+////        dealUrlTF.text = ""
+//    }
    }
      @objc func swiped(_ gesture: UISwipeGestureRecognizer) {
         if gesture.direction == .left {
@@ -156,6 +128,39 @@ class PostDealTableViewController: UIViewController,UITextFieldDelegate {
             currentString.replacingCharacters(in: range, with: string) as NSString
         
         return true
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == dealUrlTF{
+            let pasteboard = UIPasteboard.general
+            if let text = pasteboard.string , pasteboard.hasURLs{
+                print(text)
+                dealUrlTF.text = text
+                self.imageUrl = nil
+                self.brandImageView.image = nil
+                guard let articleUrl = URL(string: dealUrlTF.text ?? "") else { return }
+                MBProgressHUD.showAdded(to: view, animated: true)
+                Readability.parse(url: articleUrl, completion: { data in
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    let title = data?.title
+                    let description = data?.description
+                    let keywords = data?.keywords
+                    let imageUrl = data?.topImage
+                   
+                    let videoUrl = data?.topVideo
+                    let datePublished = data?.datePublished
+                    
+                    self.imageUrl = data?.topImage
+                    if let url = URL(string: data?.topImage ?? ""){
+                        self.brandImageView.kf.setImage(with: url)
+                    }
+                    
+                   
+                    
+                })
+            }else{
+    //            dealUrlTF.text = ""
+            }
+        }
     }
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         if textField == dealUrlTF{
