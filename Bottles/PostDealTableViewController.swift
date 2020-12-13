@@ -255,6 +255,8 @@ class PostDealTableViewController: UIViewController,UITextFieldDelegate {
             } else {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 self.clearAll()
+                self.showAlert(withTile: "Deal Submitted!", andMessage: "")
+
                 print("Document added with ID: \(ref!.documentID)")
             }
         }
