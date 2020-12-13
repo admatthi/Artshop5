@@ -9,7 +9,8 @@
 import UIKit
 import MBProgressHUD
 import FirebaseFirestore
-class DealDetailCommentsVC: UIViewController {
+import IQKeyboardManagerSwift
+class DealDetailCommentsVC: UIViewController,UITextFieldDelegate {
     var deal:Book?
     @IBOutlet weak var markAsExpiredButton: UIButton!
     @IBOutlet weak var bottomView: UIView!
@@ -29,14 +30,12 @@ class DealDetailCommentsVC: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        commentTextTF.delegate = self
         self.modalPresentationStyle = .fullScreen
         markAsExpiredButton.layer.cornerRadius = 5
         markAsExpiredButton.layer.borderColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
         markAsExpiredButton.layer.borderWidth = 1
         let datemy = deal?.created
-        sendbutton.layer.borderWidth = 1
-        sendbutton.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         commentTextTF.layer.borderWidth = 1
         commentTextTF.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         commentTextTF.setLeftPaddingPoints(10)
@@ -48,7 +47,15 @@ class DealDetailCommentsVC: UIViewController {
         tableView.estimatedRowHeight = UITableView.automaticDimension
         getAllComments(DealId: deal?.bookID ?? "")
     }
-    @IBAction func sendbuttonAction(_ sender: Any) {
+    override func viewWillDisappear(_ animated: Bool) {
+        IQKeyboardManager.shared.enableAutoToolbar = true
+        super.viewWillDisappear(true)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        super.viewWillAppear(true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if commentTextTF.text == "" || commentTextTF.text == nil {
             
         }else{
@@ -58,6 +65,10 @@ class DealDetailCommentsVC: UIViewController {
             }
 
         }
+        return true
+    }
+    @IBAction func sendbuttonAction(_ sender: Any) {
+
     }
     @IBAction func markAsExpiredButtonAction(_ sender: Any) {
         if let userid = UserId{
