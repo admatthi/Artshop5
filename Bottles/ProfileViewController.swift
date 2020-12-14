@@ -25,13 +25,13 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
         saveButton.layer.borderWidth = 1.0
         // Do any additional setup after loading the view.
         getPrefrences()
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
-        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
-        self.view.addGestureRecognizer(swipeRight)
-
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
-        swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
-        self.view.addGestureRecognizer(swipeLeft)
+//        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
+//        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
+//        self.view.addGestureRecognizer(swipeRight)
+//
+//        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
+//        swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
+//        self.view.addGestureRecognizer(swipeLeft)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)

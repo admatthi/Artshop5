@@ -88,13 +88,56 @@ class ExploreViewController: UIViewController,UITabBarControllerDelegate {
     
     @objc func swiped(_ gesture: UISwipeGestureRecognizer) {
        if gesture.direction == .left {
-           if (self.tabBarController?.selectedIndex)! < 3 { // set your total tabs here
-               self.tabBarController?.selectedIndex += 1
-           }
+        if selectedindex != genres.count - 1{
+            selectedindex = selectedindex + 1
+            genreCollectionView.scrollToItem(at: IndexPath(item: selectedindex, section: 0), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
+            
+            
+            selectedgenre = genres[selectedindex]
+            
+            
+            if selectedindex == 0 {
+                queryforids()
+                
+            }else{
+                searchDealByCategory()
+            }
+           
+            
+            logCategoryPressed(referrer: referrer)
+            
+            titleCollectionView.scrollToItem(at: IndexPath(item: selectedindex, section: 0), at: .top, animated: false)
+            //            addstaticbooks()
+            
+            
+            genreCollectionView.reloadData()
+        }
+
        } else if gesture.direction == .right {
-           if (self.tabBarController?.selectedIndex)! > 0 {
-               self.tabBarController?.selectedIndex -= 1
-           }
+        if selectedindex != 0{
+        selectedindex = selectedindex - 1
+        genreCollectionView.scrollToItem(at: IndexPath(item: selectedindex, section: 0), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
+        
+        
+        selectedgenre = genres[selectedindex]
+        
+        
+        if selectedindex == 0 {
+            queryforids()
+            
+        }else{
+            searchDealByCategory()
+        }
+       
+        
+        logCategoryPressed(referrer: referrer)
+        
+        titleCollectionView.scrollToItem(at: IndexPath(item: selectedindex, section: 0), at: .top, animated: false)
+        //            addstaticbooks()
+        
+        
+        genreCollectionView.reloadData()
+       }
        }
    }
     override func viewDidLoad() {
@@ -440,7 +483,6 @@ class ExploreViewController: UIViewController,UITabBarControllerDelegate {
         }
     }
     
-    var genreindex = Int()
     
     @objc func likeButtonAction(sender : AnyObject){
         print(sender.tag)
@@ -597,7 +639,6 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
             selectedgenre = genres[indexPath.row]
             
             
-            genreindex = indexPath.row
             if indexPath.row == 0 {
                 queryforids()
                 
