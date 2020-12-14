@@ -96,7 +96,7 @@ class ExploreViewController: UIViewController,UITabBarControllerDelegate {
             selectedgenre = genres[selectedindex]
             
             
-            if selectedindex == 0 {
+            if selectedindex == 0 || selectedindex == 1 {
                 queryforids()
                 
             }else{
@@ -122,7 +122,7 @@ class ExploreViewController: UIViewController,UITabBarControllerDelegate {
         selectedgenre = genres[selectedindex]
         
         
-        if selectedindex == 0 {
+        if selectedindex == 0 || selectedindex == 1 {
             queryforids()
             
         }else{
@@ -155,6 +155,7 @@ class ExploreViewController: UIViewController,UITabBarControllerDelegate {
         
         genres.removeAll()
         genres.append("Newly Added")
+        genres.append("Likes")
         genres.append("Shoes")
         genres.append("Shirts")
         genres.append("Pants")
@@ -473,7 +474,15 @@ class ExploreViewController: UIViewController,UITabBarControllerDelegate {
                                 //
                                 self.books = self.books.sorted(by: { $0.created?.dateValue().timeIntervalSince1970 ?? 0 > $1.created?.dateValue().timeIntervalSince1970 ?? 1 })
                                 
-                                
+                                if selectedindex == 1{
+                                    var books:[Book] = []
+                                    for i in self.userLikedDeal{
+                                        if let index = self.books.firstIndex(where: {$0.bookID == i.deal_id}){
+                                            books.append(self.books[index])
+                                        }
+                                    }
+                                    self.books = books
+                                }
                             }
                         }
                     }
@@ -639,7 +648,7 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
             selectedgenre = genres[indexPath.row]
             
             
-            if indexPath.row == 0 {
+            if indexPath.row == 0 || indexPath.row == 1 {
                 queryforids()
                 
             }else{
