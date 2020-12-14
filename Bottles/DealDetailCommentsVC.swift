@@ -46,6 +46,15 @@ class DealDetailCommentsVC: UIViewController,UITextFieldDelegate {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
         getAllComments(DealId: deal?.bookID ?? "")
+        if let userid = UserId{
+        if let exprireReq = deal?.expiredRequest {
+            if exprireReq.contains(userid) {
+                self.markAsExpiredButton.alpha = 0.5
+                self.markAsExpiredButton.isUserInteractionEnabled = false
+            }
+            
+        }
+        }
     }
     override func viewWillDisappear(_ animated: Bool) {
         IQKeyboardManager.shared.enableAutoToolbar = true
@@ -71,15 +80,20 @@ class DealDetailCommentsVC: UIViewController,UITextFieldDelegate {
 
     }
     @IBAction func markAsExpiredButtonAction(_ sender: Any) {
+        
         if let userid = UserId{
             if let exprireReq = deal?.expiredRequest {
                 if exprireReq.contains(userid) {
                     
                 }else{
+                    self.markAsExpiredButton.alpha = 0.5
                     markAsExpired(dealId: deal?.bookID ?? "")
+                    self.markAsExpiredButton.isUserInteractionEnabled = false
                 }
             }else{
+                self.markAsExpiredButton.alpha = 0.5
                 markAsExpired(dealId: deal?.bookID ?? "")
+                self.markAsExpiredButton.isUserInteractionEnabled = false
             }
             
             
