@@ -23,4 +23,5 @@ class DiscountCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var leftborderView: UIView!
     @IBOutlet weak var topborderView: UIView!
     @IBOutlet weak var datelabel: UILabel!
+    @IBOutlet weak var tumblinLabel: UILabel!
 }

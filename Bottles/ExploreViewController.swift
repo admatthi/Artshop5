@@ -1265,12 +1265,30 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 cell.imagelabel.alpha = 1
                             }
                         }
-                         
+                        cell.tumblinLabel.isHidden = true
+                        let firstLetter = "\(book?.name?.first ?? "U")".capitalized
+                        var string = book?.name ?? "OK"
+                        string.removeFirst()
+                        let secondLetter = "\(string.first ?? "K")".lowercased()
+                        cell.tumblinLabel.text = (firstLetter + secondLetter)
+                        let colorsArray:[UIColor] = [#colorLiteral(red: 0.8470041752, green: 0.9805595279, blue: 1, alpha: 1),#colorLiteral(red: 0.8489367366, green: 0.9083803892, blue: 0.999889195, alpha: 1),#colorLiteral(red: 0.8468542695, green: 1, blue: 0.8788328767, alpha: 1),#colorLiteral(red: 1, green: 0.9385563135, blue: 0.8461915255, alpha: 1),#colorLiteral(red: 1, green: 0.9585058093, blue: 0.8496385217, alpha: 1),#colorLiteral(red: 0.9007813334, green: 0.7660292387, blue: 0.8729181886, alpha: 1),#colorLiteral(red: 0.999534905, green: 0.8463687301, blue: 0.8490847945, alpha: 1),#colorLiteral(red: 0.8584440947, green: 0.8479890227, blue: 1, alpha: 1)]
+                        let randomIndex = Int(arc4random_uniform(UInt32(colorsArray.count)))
+                        cell.tumblinLabel.backgroundColor = colorsArray[randomIndex]
                          if let imageURLString = book?.imageURL, let imageUrl = URL(string: imageURLString) {
                              
                              MBProgressHUD.hide(for: view, animated: true)
                              
-                             cell.imagelabel.kf.setImage(with: imageUrl)
+                            cell.imagelabel.kf.setImage(with: imageUrl, completionHandler: {
+                                result in
+                                switch result {
+                                case .success(let value):
+                                    
+                                    print("Task done for: \(value.source.url?.absoluteString ?? "")")
+                                case .failure(let error):
+                                    cell.tumblinLabel.isHidden = false
+                                    print("Job failed: \(error.localizedDescription)")
+                                }
+                            })
                              
                              //                if didpurchase {
                              //
