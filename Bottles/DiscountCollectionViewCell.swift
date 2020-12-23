@@ -18,5 +18,9 @@ class DiscountCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titlelabel: UILabel!
     @IBOutlet weak var brandname: UILabel!
     @IBOutlet weak var imagelabel: UIImageView!
+    @IBOutlet weak var rightborderView: UIView!
+    @IBOutlet weak var bottomborderView: UIView!
+    @IBOutlet weak var leftborderView: UIView!
+    @IBOutlet weak var topborderView: UIView!
     @IBOutlet weak var datelabel: UILabel!
 }

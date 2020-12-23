@@ -1211,11 +1211,35 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                          cell.datelabel.alpha = 1
                          cell.titlelabel.alpha = 1
                          cell.brandname.alpha = 1
-                         
                          logFilterViewed(referrer: referrer)
-                         
-                         cell.layer.borderWidth = 1
-                         cell.layer.borderColor = lightg.cgColor
+                        cell.topborderView.isHidden = true
+                        cell.bottomborderView.isHidden = true
+                        cell.rightborderView.isHidden = true
+                        cell.leftborderView.isHidden = true
+                        cell.topborderView.backgroundColor = lightg
+                        cell.bottomborderView.backgroundColor = lightg
+                        cell.rightborderView.backgroundColor = lightg
+                        cell.leftborderView.backgroundColor = lightg
+                        if indexPath.row == 0 {
+                            cell.topborderView.isHidden = false
+                            cell.bottomborderView.isHidden = false
+                            cell.rightborderView.isHidden = false
+                            cell.leftborderView.isHidden = false
+                        }else if indexPath.row == 1 {
+                            cell.topborderView.isHidden = false
+                            cell.bottomborderView.isHidden = false
+                            cell.rightborderView.isHidden = false
+                        }else if (indexPath.row) % 2 == 0 {
+                            cell.bottomborderView.isHidden = false
+                            cell.rightborderView.isHidden = false
+                            cell.leftborderView.isHidden = false
+                        }else{
+                            cell.bottomborderView.isHidden = false
+                            cell.rightborderView.isHidden = false
+
+                        }
+                        
+
                         if let bookdata = book{
                             if bookdata.expired {
                                 cell.soldOutLabel.isHidden = false
@@ -1327,4 +1351,35 @@ extension Date {
 
         return "5s"
     }
+}
+extension CALayer {
+
+  func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
+
+    let border = CALayer()
+
+    switch edge {
+    case UIRectEdge.top:
+        border.frame = CGRect(x: 0, y: 0, width: frame.width, height: thickness)
+
+    case UIRectEdge.bottom:
+        border.frame = CGRect(x:0, y: frame.height - thickness, width: frame.width, height:thickness)
+
+    case UIRectEdge.left:
+        border.frame = CGRect(x:0, y:0, width: thickness, height: frame.height)
+
+    case UIRectEdge.right:
+        border.frame = CGRect(x: frame.width - thickness, y: 0, width: thickness, height: frame.height)
+
+    default: do {}
+    }
+
+    border.backgroundColor = color.cgColor
+
+    addSublayer(border)
+ }
+    func removeBorder() {
+
+    sublayers?.removeAll()
+   }
 }
