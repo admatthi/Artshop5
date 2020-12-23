@@ -461,8 +461,8 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="3Vg-53-VKJ">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="58"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deal URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2C-PZ-GCV">
-                                                <rect key="frame" x="0.0" y="0.0" width="63" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DEAL URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2C-PZ-GCV">
+                                                <rect key="frame" x="0.0" y="0.0" width="70.5" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="lvG-ja-EtG"/>
                                                 </constraints>
