@@ -1350,13 +1350,13 @@ extension Date {
 //         Hours
         if let interval = Calendar.current.dateComponents([.hour], from: fromDate, to: toDate).hour, interval > 0 {
 
-            return interval == 1 ? "\(interval)" + "" + "h ago" : "\(interval)" + "" + "h ago"
+            return interval == 1 ? "\(interval)" + "" + "h " : "\(interval)" + "" + "h "
         }
 
         // Minute
         if let interval = Calendar.current.dateComponents([.minute], from: fromDate, to: toDate).minute, interval > 0 {
 
-            return interval == 1 ? "\(interval)" + "" + "m ago" : "\(interval)" + "" + "m ago"
+            return interval == 1 ? "\(interval)" + "" + "m " : "\(interval)" + "" + "m "
         }
 
         return "5s"
