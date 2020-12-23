@@ -743,7 +743,12 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
             return genres.count
         case self.titleCollectionView:
             if (books.count == 0) {
+                if selectedindex == 1 {
+                    self.titleCollectionView.setEmptyMessage("Your Likes will show up here.")
+                }else{
                     self.titleCollectionView.setEmptyMessage("No new items.\n Check back later.")
+                }
+                   
                 } else {
                     self.titleCollectionView.restore()
                 }
