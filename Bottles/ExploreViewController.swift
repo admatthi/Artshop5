@@ -1314,6 +1314,9 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
                              //                    //
                              //                }
                              
+                         }else{
+                            cell.imagelabel.image = nil
+                            cell.tumblinLabel.isHidden = false
                          }
                          
                          return cell
