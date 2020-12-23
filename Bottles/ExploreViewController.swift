@@ -742,6 +742,11 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
         case self.genreCollectionView:
             return genres.count
         case self.titleCollectionView:
+            if (books.count == 0) {
+                    self.titleCollectionView.setEmptyMessage("No new items.\n Check back later.")
+                } else {
+                    self.titleCollectionView.restore()
+                }
             return books.count
         default:
             return 0
@@ -1382,4 +1387,22 @@ extension CALayer {
 
     sublayers?.removeAll()
    }
+}
+extension UICollectionView {
+
+    func setEmptyMessage(_ message: String) {
+        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = .lightGray
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = .center;
+        messageLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 18.0)!
+        messageLabel.sizeToFit()
+
+        self.backgroundView = messageLabel;
+    }
+
+    func restore() {
+        self.backgroundView = nil
+    }
 }
