@@ -51,6 +51,7 @@ class ExploreViewController: UIViewController,UITabBarControllerDelegate {
     @IBOutlet weak var titleCollectionView: UICollectionView!
     var counter = 0
     //
+    var listener: ListenerRegistration?
     @IBOutlet weak var genreCollectionView: UICollectionView!
     var userLikedDeal:[LikeModel] = [] {
         didSet {
@@ -390,8 +391,11 @@ class ExploreViewController: UIViewController,UITabBarControllerDelegate {
         }else{
             
         }
-        collection.limit(to: 1000)
-            .getDocuments() { (querySnapshot, err) in
+        if listener != nil {
+            listener = nil
+        }
+        self.listener = collection.limit(to: 1000)
+            .addSnapshotListener() { (querySnapshot, err) in
                 
                 
                 if let err = err {
@@ -441,9 +445,11 @@ class ExploreViewController: UIViewController,UITabBarControllerDelegate {
         
         var functioncounter = 0
         
-        
-        db.collection("latest_deals").whereField("brand", isGreaterThan: " ").limit(to: 1000)
-            .getDocuments() { (querySnapshot, err) in
+        if listener != nil {
+            listener = nil
+        }
+        self.listener = db.collection("latest_deals").whereField("brand", isGreaterThan: " ").limit(to: 1000)
+            .addSnapshotListener() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {

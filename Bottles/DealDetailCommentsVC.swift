@@ -26,6 +26,7 @@ class DealDetailCommentsVC: UIViewController,UITextFieldDelegate {
             DispatchQueue.main.async(execute: tableView.reloadData)
         }
     }
+    var listener: ListenerRegistration?
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var dateLabel: UILabel!
     override func viewDidLoad() {
@@ -63,6 +64,11 @@ class DealDetailCommentsVC: UIViewController,UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         IQKeyboardManager.shared.enableAutoToolbar = false
         super.viewWillAppear(true)
+    }
+    deinit {
+        if listener != nil {
+            listener = nil
+        }
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if commentTextTF.text == "" || commentTextTF.text == nil {
@@ -104,7 +110,10 @@ class DealDetailCommentsVC: UIViewController,UITextFieldDelegate {
     
     func getAllComments(DealId:String){
         MBProgressHUD.showAdded(to: view, animated: true)
-        db.collection("deal_comment").whereField("deal_id", isEqualTo: DealId).getDocuments() { (querySnapshot, err) in
+        if listener != nil {
+            listener = nil
+        }
+        self.listener =  db.collection("deal_comment").whereField("deal_id", isEqualTo: DealId).addSnapshotListener() { (querySnapshot, err) in
             MBProgressHUD.hide(for: self.view, animated: true)
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -211,8 +220,6 @@ class DealDetailCommentsVC: UIViewController,UITextFieldDelegate {
                                 cell.commentButton.setTitle("\(deal.commentCount)", for: .normal)
                                 cell.commentButton.setTitle("\(deal.commentCount)", for: .selected)
                             }
-                            self.comments.append(CommentModel(id: ref!.documentID, deal_id: dealiD, user_id: userID, comment_text: CommentText, userName: userName))
-                            self.tableView.reloadData()
                             document?.reference.updateData([
                                 "comment_count": count
                                 ])
