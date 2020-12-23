@@ -62,6 +62,9 @@ class ExploreViewController: UIViewController,UITabBarControllerDelegate {
     }
     var books: [Book] = [] {
         didSet {
+            if books.count > 0 {
+            self.titleCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+            }
             self.titleCollectionView.reloadData()
         }
     }
