@@ -62,9 +62,6 @@ class ExploreViewController: UIViewController,UITabBarControllerDelegate {
     }
     var books: [Book] = [] {
         didSet {
-            if books.count > 0 {
-            self.titleCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-            }
             self.titleCollectionView.reloadData()
         }
     }
@@ -643,7 +640,9 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
         generator.impactOccurred()
         self.view.endEditing(true)
         titleCollectionView.isUserInteractionEnabled = true
-        
+        if books.count > 0 {
+        self.titleCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+        }
         
         
         if collectionView.tag == 1 {
