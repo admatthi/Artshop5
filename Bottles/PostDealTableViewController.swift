@@ -206,21 +206,21 @@ class PostDealTableViewController: UIViewController,UITextFieldDelegate {
         let currentPrice = Int(currentPriceTF.text ?? "") ?? 0
         let originalPrice = Int(originalPriceTF.text ?? "") ?? 0
         if dealUrlTF.text == nil || dealUrlTF.text == "" {
-            showAlert(withTile: "Validation Error", andMessage: "Please Enter DealUrl")
+            showAlert(withTile: "", andMessage: "Please Enter Deal Url")
         }else if URL(string: dealUrlTF.text!) == nil {
-            showAlert(withTile: "Validation Error", andMessage: "Please Enter Valid DealUrl")
+            showAlert(withTile: "", andMessage: "Please Enter Valid Deal Url")
         }else if brandTF.text == nil || brandTF.text == "" {
-            showAlert(withTile: "Validation Error", andMessage: "Please Enter brand")
+            showAlert(withTile: "", andMessage: "Please Enter brand")
         }else  if itemTF.text == nil || itemTF.text == "" {
-            showAlert(withTile: "Validation Error", andMessage: "Please Enter Item")
+            showAlert(withTile: "", andMessage: "Please Enter Item")
         }else  if currentPriceTF.text == nil || currentPriceTF.text == "" {
-            showAlert(withTile: "Validation Error", andMessage: "Please add Current Price")
+            showAlert(withTile: "", andMessage: "Please add Current Price")
         }else  if originalPriceTF.text == nil || originalPriceTF.text == "" {
-            showAlert(withTile: "Validation Error", andMessage: "Please add Original Price")
+            showAlert(withTile: "", andMessage: "Please add Original Price")
         }else if categoryTF.text == "" {
-            showAlert(withTile: "Validation Error", andMessage: "Please Select Atleast one Category")
+            showAlert(withTile: "", andMessage: "Please Select Atleast one Category")
         }else if currentPrice >= originalPrice {
-            showAlert(withTile: "Validation Error" , andMessage: "Current Price must be less than the orginal price.")
+            showAlert(withTile: "" , andMessage: "Current Price must be less than the orginal price.")
         }else{
             self.postData(dealurl: dealUrlTF.text ?? "", brandName: brandTF.text ?? "", ItemName: itemTF.text ?? "", originalPrice: originalPriceTF.text ?? "", currentPrice: currentPriceTF.text ?? "", imageUrl: self.imageUrl ?? "", category: categoryTF.text ?? "")
         }

@@ -20,7 +20,7 @@ class AddUserNameTableViewController: UITableViewController {
 
     @IBAction func signupButtonAction(_ sender: Any) {
         if userNameTF.text == "" || userNameTF.text == nil {
-            showAlert(withTile: "Validation Error", andMessage: "Please enter UserName.")
+            showAlert(withTile: "", andMessage: "Please enter UserName.")
         }else{
             let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = mainStoryboardIpad.instantiateViewController(withIdentifier: "OnBoardingViewController") as! OnBoardingViewController
