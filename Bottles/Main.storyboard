@@ -283,7 +283,7 @@
             </objects>
             <point key="canvasLocation" x="-5536" y="-668"/>
         </scene>
-        <!--Profile-->
+        <!--PROFILE-->
         <scene sceneID="wn0-B0-I2t">
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" id="vfg-tX-qYq" customClass="ProfileViewController" customModule="Drip" customModuleProvider="target" sceneMemberID="viewController">
@@ -405,7 +405,7 @@
                             <constraint firstItem="0Od-Yy-LLc" firstAttribute="trailing" secondItem="tza-ag-c3b" secondAttribute="trailing" constant="20" id="zWQ-aH-SLp"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="Artboard Copy 76" id="dfc-7y-WZD"/>
+                    <tabBarItem key="tabBarItem" title="PROFILE" image="Artboard Copy 76" id="dfc-7y-WZD"/>
                     <connections>
                         <outlet property="notificationSwitch" destination="tza-ag-c3b" id="VMr-yT-fdi"/>
                         <outlet property="saveButton" destination="8Zd-8F-Vaz" id="iic-MU-Ae9"/>
@@ -1056,7 +1056,7 @@
                             <constraint firstItem="Co0-9j-3vy" firstAttribute="top" secondItem="i8b-Jl-fVC" secondAttribute="top" constant="10" id="vmu-iT-GD1"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Explore" image="Artboard" id="FvM-YE-382"/>
+                    <tabBarItem key="tabBarItem" title="EXPLORE" image="Artboard" id="FvM-YE-382"/>
                     <connections>
                         <outlet property="genreCollectionView" destination="iv3-FC-jEE" id="Bzv-km-CGH"/>
                         <outlet property="titleCollectionView" destination="Hij-yj-qEg" id="dbM-Vk-Fzv"/>
