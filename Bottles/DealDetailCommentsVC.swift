@@ -37,7 +37,6 @@ class DealDetailCommentsVC: UIViewController,UITextFieldDelegate {
         markAsExpiredButton.layer.borderColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
         markAsExpiredButton.layer.borderWidth = 1
         let datemy = deal?.created
-        commentTextTF.layer.borderWidth = 1
         commentTextTF.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         commentTextTF.setLeftPaddingPoints(10)
         let date = datemy!.dateValue()
@@ -311,3 +310,4 @@ extension DealDetailCommentsVC:UITableViewDelegate,UITableViewDataSource {
                                                    context: nil)
     }
 }
+
