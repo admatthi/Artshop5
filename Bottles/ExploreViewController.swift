@@ -70,7 +70,12 @@ class ExploreViewController: UIViewController,UITabBarControllerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        queryforids()
+        if selectedindex == 0 || selectedindex == 1 {
+            queryforids()
+            
+        }else{
+            searchDealByCategory()
+        }
         
         self.titleCollectionView.reloadData()
 

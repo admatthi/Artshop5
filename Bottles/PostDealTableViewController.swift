@@ -120,7 +120,7 @@ class PostDealTableViewController: UIViewController,UITextFieldDelegate {
 //            self?.categoryTF.text = item
 //
 //        }
-        let names = ["Shoes", "Shirts", "Pants", "Jackets", "Sweaters", "Sweatshirts"]
+        let names = ["Shoes", "Shirts", "Pants", "Jackets", "Sweaters", "Sweatshirts","Other"]
         ActionSheetStringPicker.show(withTitle: "Select Categories", rows:names, initialSelection: 0, doneBlock: {
             picker,index , value in
             self.categoryTF.text = names[index]
