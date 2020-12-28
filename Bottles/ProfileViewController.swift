@@ -9,15 +9,22 @@
 import UIKit
 import FirebaseFirestore
 import MBProgressHUD
-class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDataSource  {
+struct BrandSection {
+    var type: String
+    var Brands: [String]
+}
 
+class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDataSource  {
+//    brandSection = [BrandSection(type: "MY BRANDS", Brands: []),BrandSection(type: "ALL BRANDS", Brands: []),BrandSection(type: "A", Brands: ["Adidas"]),BrandSection(type: "B", Brands: ["Balenciaga"]),BrandSection(type: "C", Brands: ["Common Projects"]),BrandSection(type: "D", Brands: ["Dior",]),BrandSection(type: "E", Brands: []),BrandSection(type: "F", Brands: []),BrandSection(type: "G", Brands: ["Georgio Armani","Gucci"]),BrandSection(type: "H", Brands: ["Hermes"]),BrandSection(type: "I", Brands: []),BrandSection(type: "J", Brands: ["J. Crew"]),BrandSection(type: "K", Brands: []),BrandSection(type: "L", Brands: ["Louis Vuitton","Lululemon"]),BrandSection(type: "M", Brands: []),BrandSection(type: "N", Brands: []),BrandSection(type: "O", Brands: ["Off White"]),BrandSection(type: "P", Brands: ["Prada"]),BrandSection(type: "Q", Brands: []),BrandSection(type: "R", Brands: ["Ralph Lauren"]),BrandSection(type: "S", Brands: ["Supreme"]),BrandSection(type: "T", Brands: []),BrandSection(type: "U", Brands: []),BrandSection(type: "V", Brands: ["Versace"]),BrandSection(type: "W", Brands: []),BrandSection(type: "X", Brands: []),BrandSection(type: "Y", Brands: []),BrandSection(type: "Z", Brands: [])]
     @IBOutlet weak var notificationSwitch: UISwitch!
+    var brandSection:[BrandSection] = []
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var saveButton: UIButton!
     var allBrands = ["Gucci","Dior","Versace","Off White","Supreme","Louis Vuitton","Adidas","Balenciaga","Common Projects","Georgio Armani","Hermes","Prada","Ralph Lauren","J. Crew","Lululemon",]
     var selectedBrands:[String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        brandSection = [BrandSection(type: "MY BRANDS", Brands: []),BrandSection(type: "ALL BRANDS", Brands: []),BrandSection(type: "A", Brands: ["Adidas"]),BrandSection(type: "B", Brands: ["Balenciaga"]),BrandSection(type: "C", Brands: ["Common Projects"]),BrandSection(type: "D", Brands: ["Dior",]),BrandSection(type: "G", Brands: ["Georgio Armani","Gucci"]),BrandSection(type: "H", Brands: ["Hermes"]),BrandSection(type: "J", Brands: ["J. Crew"]),BrandSection(type: "L", Brands: ["Louis Vuitton","Lululemon"]),BrandSection(type: "O", Brands: ["Off White"]),BrandSection(type: "P", Brands: ["Prada"]),BrandSection(type: "R", Brands: ["Ralph Lauren"]),BrandSection(type: "S", Brands: ["Supreme"]),BrandSection(type: "V", Brands: ["Versace"])]
         self.tableView.dataSource = self
         self.tableView.delegate = self
         saveButton.layer.cornerRadius = 10
@@ -74,7 +81,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     if let brands = data["brands"] as? [String]
                     {
                         self.selectedBrands = brands
-                        
+                        self.brandSection[0].Brands = brands
                     }
                     if let notificationFlag = data["notificationEnable"] as? Bool{
                         self.notificationSwitch.setOn(notificationFlag, animated: true)
@@ -160,32 +167,84 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
          alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
          self.present(alert, animated: true, completion: nil)
      }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allBrands.count
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return brandSection.count
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let brand = allBrands[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BrandTableViewCell", for: indexPath) as! BrandTableViewCell
-        cell.brandNamelabel.text = brand
-        if selectedBrands.contains(brand){
-            cell.radioImageView.image = #imageLiteral(resourceName: "checked")
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return brandSection[0].Brands.count
         }else{
-            cell.radioImageView.image = #imageLiteral(resourceName: "unchecked")
+            return brandSection[section].Brands.count
         }
-        return cell
+        
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let sectionText = self.brandSection[section].type
+            let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
+            headerView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            let label = UILabel()
+            label.frame = CGRect.init(x: 20, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
+            label.text = sectionText
+            label.font = UIFont(name: "HelveticaNeue-Bold", size: 15) // my custom font
+            label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) // my custom colour
+
+            headerView.addSubview(label)
+
+            return headerView
+        }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+       return 35
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let section = self.brandSection[section]
+
+        return section.type
+        
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let brand = brandSection[0].Brands[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BrandTableViewCell", for: indexPath) as! BrandTableViewCell
+            cell.brandNamelabel.text = brand
+            cell.brandNamelabel.textColor = #colorLiteral(red: 0.01176470588, green: 0.3098039216, blue: 0.2784313725, alpha: 1)
+            cell.radioImageView.isHidden = false
+            cell.radioImageView.image = #imageLiteral(resourceName: "checked")
+            return cell
+        }else{
+            let brand = brandSection[indexPath.section].Brands[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BrandTableViewCell", for: indexPath) as! BrandTableViewCell
+            cell.brandNamelabel.text = brand
+            if selectedBrands.contains(brand){
+                cell.brandNamelabel.textColor = #colorLiteral(red: 0.01176470588, green: 0.3098039216, blue: 0.2784313725, alpha: 1)
+                cell.radioImageView.isHidden = false
+                cell.radioImageView.image = #imageLiteral(resourceName: "checked")
+            }else{
+                cell.brandNamelabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                cell.radioImageView.isHidden = true
+            }
+            return cell
+        }
+
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let brand = allBrands[indexPath.row]
-        if selectedBrands.contains(brand) {
-            if let index = selectedBrands.firstIndex(of: brand){
-                selectedBrands.remove(at: index)
-            }
+        if indexPath.section == 0{
+            
         }else{
-            selectedBrands.append(brand)
+            let brand = brandSection[indexPath.section].Brands[indexPath.row]
+            if selectedBrands.contains(brand) {
+                if let index = selectedBrands.firstIndex(of: brand){
+                    selectedBrands.remove(at: index)
+                    brandSection[0].Brands.remove(at: index)
+                }
+            }else{
+                selectedBrands.append(brand)
+                brandSection[0].Brands.append(brand)
 
+            }
+            self.tableView.reloadData()
         }
-        self.tableView.reloadData()
+
 
     }
 
