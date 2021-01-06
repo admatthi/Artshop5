@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MBProgressHUD
 class AddUserNameTableViewController: UITableViewController {
 
     @IBOutlet weak var userNameTF: UITextField!
@@ -22,14 +22,27 @@ class AddUserNameTableViewController: UITableViewController {
         if userNameTF.text == "" || userNameTF.text == nil {
             showAlert(withTile: "", andMessage: "Please enter UserName.")
         }else{
-            let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = mainStoryboardIpad.instantiateViewController(withIdentifier: "OnBoardingViewController") as! OnBoardingViewController
-            vc.userName = userNameTF.text
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
-            appDelegate.window?.rootViewController = vc
-            
-            appDelegate.window?.makeKeyAndVisible()
+            MBProgressHUD.showAdded(to: view, animated: true)
+            db.collection("profile").whereField("userName", isEqualTo: userNameTF.text!).getDocuments() { (querySnapshot, err) in
+                MBProgressHUD.hide(for: self.view, animated: true)
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.documents.count > 0 {
+                        self.showAlert(withTile: "", andMessage: "username taken!")
+                    }else{
+                        let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let vc = mainStoryboardIpad.instantiateViewController(withIdentifier: "OnBoardingViewController") as! OnBoardingViewController
+                        vc.userName = self.userNameTF.text
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
+                        appDelegate.window?.rootViewController = vc
+                        
+                        appDelegate.window?.makeKeyAndVisible()
+                    }
+                }
+            }
+
         }
 
     }
