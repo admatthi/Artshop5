@@ -13,6 +13,9 @@ import MBProgressHUD
 class OnBoardingViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     var allBrands = ["Gucci","Dior","Versace","Off White","Supreme","Louis Vuitton","Adidas","Balenciaga","Common Projects","Georgio Armani","Hermes","Prada","Ralph Lauren","J. Crew","Lululemon",]
+    
+    var brands:[Brand] = [Brand(name: "NIKE", icon: "NIKE"),Brand(name: "ADIDAS ORIGINAL", icon: "ADIDAS ORIGINAL"),Brand(name: "KENZO", icon: "KENZO"),Brand(name: "PLAY COMME DES GARCONS".capitalized, icon: "PLAY COMME DES GARCONS".capitalized),Brand(name: "COMMON PROJECTS".capitalized, icon: "COMMON PROJECTS   ".capitalized),Brand(name: "A.P.C".capitalized, icon: "A.P.C".capitalized),Brand(name: "FOLK".capitalized, icon: "FOLK".capitalized),Brand(name: "MAISON KITSUNE".capitalized, icon: "MAISON KITSUNE".capitalized),Brand(name: "COS".capitalized, icon: "COS".capitalized),Brand(name: "NORSE PROJECTS".capitalized, icon: "NORSE PROJECTS".capitalized),Brand(name: "THE HIP STORE".capitalized, icon: "THE HIP STORE".capitalized),Brand(name: "SATURDAYS NYC".capitalized, icon: "SATURDAYS NYC".capitalized),Brand(name: "AIME LEON DORE".capitalized, icon: "AIME LEON DORE".capitalized),Brand(name: "SANDRO".capitalized, icon: "SANDRO".capitalized),Brand(name: "ACNE STUDIOS".capitalized, icon: "ACNE STUDIOS".capitalized),Brand(name: "PATAGONIA".capitalized, icon: "PATAGONIA".capitalized),Brand(name: "AMI".capitalized, icon: "AMI".capitalized),Brand(name: "CHAMPION".capitalized, icon: "CHAMPION".capitalized),Brand(name: "YMC".capitalized, icon: "YMC".capitalized),Brand(name: "MAISON LABICHE".capitalized, icon: "MAISON LABICHE".capitalized),Brand(name: "UNIVERSAL WORKS".capitalized, icon: "UNIVERSAL WORKS".capitalized),Brand(name: "CARHARTT".capitalized, icon: "CARHARTT".capitalized),Brand(name: "WOOD WOOD".capitalized, icon: "WOOD WOOD".capitalized),Brand(name: "NNO7".capitalized, icon: "NNO7".capitalized),Brand(name: "NOAH".capitalized, icon: "NOAH".capitalized),Brand(name: "RAINS".capitalized, icon: "RAINS".capitalized),Brand(name: "EDWIN".capitalized, icon: "EDWIN".capitalized),Brand(name: "NEW BALANCE".capitalized, icon: "NEW BALANCE".capitalized),Brand(name: "LES DEUX".capitalized, icon: "LES DEUX".capitalized),Brand(name: "ALLSAINTS".capitalized, icon: "ALLSAINTS".capitalized),Brand(name: "THE KOOPLES".capitalized, icon: "THE KOOPLES".capitalized),Brand(name: "LEVI'S".capitalized, icon: "LEVI'S".capitalized)]
+    
     var selectedBrands:[String] = []
     var userName:String?
     @IBOutlet weak var tableView: UITableView!
@@ -112,5 +115,12 @@ class OnBoardingViewController: UIViewController,UITableViewDelegate,UITableView
         }
         self.tableView.reloadData()
 
+    }
+}
+struct Brand:Equatable {
+    var name:String
+    var icon:String
+    static func ==(lhs: Brand, rhs: Brand) -> Bool {
+        return lhs.name == rhs.name && lhs.icon == rhs.icon
     }
 }

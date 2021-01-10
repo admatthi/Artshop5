@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                      
                  } else {
                     let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let vc : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "AddUserNameTableViewController") as! AddUserNameTableViewController
+                    let vc : UINavigationController = mainStoryboardIpad.instantiateViewController(withIdentifier: "addUserNameUINavigation") as! UINavigationController
                     self.window = UIWindow(frame: UIScreen.main.bounds)
                     self.window?.rootViewController = vc
                     

@@ -32,13 +32,9 @@ class AddUserNameTableViewController: UITableViewController {
                         self.showAlert(withTile: "", andMessage: "username taken!")
                     }else{
                         let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                        let vc = mainStoryboardIpad.instantiateViewController(withIdentifier: "OnBoardingViewController") as! OnBoardingViewController
+                        let vc = mainStoryboardIpad.instantiateViewController(withIdentifier: "OnboardingBrandsViewController") as! OnboardingBrandsViewController
                         vc.userName = self.userNameTF.text
-                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
-                        appDelegate.window?.rootViewController = vc
-                        
-                        appDelegate.window?.makeKeyAndVisible()
+                        self.navigationController?.pushViewController(vc, animated: true)
                     }
                 }
             }

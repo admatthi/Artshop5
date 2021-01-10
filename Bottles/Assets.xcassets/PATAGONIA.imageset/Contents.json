@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "PATAGONIA.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

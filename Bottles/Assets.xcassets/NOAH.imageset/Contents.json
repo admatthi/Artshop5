@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "NOAH.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
