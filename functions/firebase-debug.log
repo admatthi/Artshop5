@@ -1,0 +1,13 @@
+[debug] [2021-01-16T10:09:31.175Z] ----------------------------------------------------------------------
+[debug] [2021-01-16T10:09:31.177Z] Command:       /usr/local/Cellar/node/12.10.0/bin/node /usr/local/bin/firebase deploy
+[debug] [2021-01-16T10:09:31.177Z] CLI Version:   8.17.0
+[debug] [2021-01-16T10:09:31.177Z] Platform:      darwin
+[debug] [2021-01-16T10:09:31.177Z] Node Version:  v12.10.0
+[debug] [2021-01-16T10:09:31.178Z] Time:          Sat Jan 16 2021 15:09:31 GMT+0500 (Pakistan Standard Time)
+[debug] [2021-01-16T10:09:31.178Z] ----------------------------------------------------------------------
+[debug] [2021-01-16T10:09:31.178Z] 
+[debug] [2021-01-16T10:09:31.186Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-01-16T10:09:31.187Z] > authorizing via signed-in user
+[debug] [2021-01-16T10:09:31.187Z] [iam] checking project artshop-ccf80 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get"]
+[debug] [2021-01-16T10:09:31.190Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/artshop-ccf80:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get"]}
