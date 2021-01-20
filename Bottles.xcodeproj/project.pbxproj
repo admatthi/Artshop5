@@ -17,6 +17,7 @@
 		4E49B27125AB8B1800F1EF9A /* newOnboardingBrandCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E49B27025AB8B1800F1EF9A /* newOnboardingBrandCVC.swift */; };
 		4E508AC02578070C009F399C /* PostDealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E508ABF2578070C009F399C /* PostDealViewController.swift */; };
 		4E508AC525780732009F399C /* PostDealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E508AC425780732009F399C /* PostDealTableViewController.swift */; };
+		4E664B2725B7AAF500D4EF16 /* NotificationPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E664B2625B7AAF500D4EF16 /* NotificationPermissionViewController.swift */; };
 		4E9C4F33257ECD4200F19F6A /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C4F32257ECD4200F19F6A /* LikeModel.swift */; };
 		4EF2AD4F257996820076AA34 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2AD4E257996820076AA34 /* OnBoardingViewController.swift */; };
 		4EF2AD552579998B0076AA34 /* BrandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2AD542579998B0076AA34 /* BrandTableViewCell.swift */; };
@@ -74,6 +75,7 @@
 		4E49B27025AB8B1800F1EF9A /* newOnboardingBrandCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newOnboardingBrandCVC.swift; sourceTree = "<group>"; };
 		4E508ABF2578070C009F399C /* PostDealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDealViewController.swift; sourceTree = "<group>"; };
 		4E508AC425780732009F399C /* PostDealTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDealTableViewController.swift; sourceTree = "<group>"; };
+		4E664B2625B7AAF500D4EF16 /* NotificationPermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionViewController.swift; sourceTree = "<group>"; };
 		4E9C4F32257ECD4200F19F6A /* LikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeModel.swift; sourceTree = "<group>"; };
 		4EF2ACEB25795BA50076AA34 /* Drip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Drip.entitlements; sourceTree = "<group>"; };
 		4EF2AD4E257996820076AA34 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				4E49B26E25AB86DB00F1EF9A /* OnboardingBrandsViewController.swift */,
+				4E664B2625B7AAF500D4EF16 /* NotificationPermissionViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				4EF2AD552579998B0076AA34 /* BrandTableViewCell.swift in Sources */,
 				9D0A44E624A91A0C00E3FB94 /* Book.swift in Sources */,
 				4EF2AD4F257996820076AA34 /* OnBoardingViewController.swift in Sources */,
+				4E664B2725B7AAF500D4EF16 /* NotificationPermissionViewController.swift in Sources */,
 				9D1EF6C324A44A7C00C980D7 /* ExploreViewController.swift in Sources */,
 				9DC0D8CE252BF41000FC402B /* DiscountCollectionViewCell.swift in Sources */,
 				4E9C4F33257ECD4200F19F6A /* LikeModel.swift in Sources */,

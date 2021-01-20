@@ -284,6 +284,76 @@
             </objects>
             <point key="canvasLocation" x="-4626.0869565217399" y="-668.30357142857144"/>
         </scene>
+        <!--NOTIFICATIONS-->
+        <scene sceneID="NR6-2v-NUi">
+            <objects>
+                <viewController storyboardIdentifier="NotificationPermissionViewController" id="KCP-um-AL2" customClass="NotificationPermissionViewController" customModule="Drip" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xW5-lW-HsO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Notifications on sales and new releases from your favourite brands" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xJ-un-ECg">
+                                <rect key="frame" x="50" y="138" width="314" height="72"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notificationImage" translatesAutoresizingMaskIntoConstraints="NO" id="JH9-J0-iC0">
+                                <rect key="frame" x="15" y="350" width="399" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="3Pv-pN-ELl"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EtL-WG-hfE">
+                                <rect key="frame" x="20" y="789" width="374" height="63"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="lNE-xF-2z3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="N E X T">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextButtonAction:" destination="KCP-um-AL2" eventType="touchUpInside" id="oD5-Dk-j9H"/>
+                                    <action selector="saveButtonAction:" destination="W64-ll-Shc" eventType="touchUpInside" id="3l9-eb-Z4j"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="nky-bC-f4K"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3xJ-un-ECg" firstAttribute="leading" secondItem="nky-bC-f4K" secondAttribute="leading" constant="50" id="4FD-dR-yMD"/>
+                            <constraint firstItem="nky-bC-f4K" firstAttribute="bottom" secondItem="EtL-WG-hfE" secondAttribute="bottom" constant="10" id="76q-36-N3X"/>
+                            <constraint firstAttribute="trailing" secondItem="3xJ-un-ECg" secondAttribute="trailing" constant="50" id="Jnw-sk-BAv"/>
+                            <constraint firstItem="nky-bC-f4K" firstAttribute="trailing" secondItem="JH9-J0-iC0" secondAttribute="trailing" id="byp-Ld-bRB"/>
+                            <constraint firstItem="EtL-WG-hfE" firstAttribute="leading" secondItem="xW5-lW-HsO" secondAttribute="leading" constant="20" id="dnT-ac-2Un"/>
+                            <constraint firstItem="JH9-J0-iC0" firstAttribute="leading" secondItem="nky-bC-f4K" secondAttribute="leading" constant="15" id="qcN-fe-kci"/>
+                            <constraint firstItem="nky-bC-f4K" firstAttribute="trailing" secondItem="EtL-WG-hfE" secondAttribute="trailing" constant="20" id="tTD-Lf-jdJ"/>
+                            <constraint firstItem="3xJ-un-ECg" firstAttribute="top" secondItem="nky-bC-f4K" secondAttribute="top" constant="50" id="ty1-j8-qK3"/>
+                            <constraint firstItem="JH9-J0-iC0" firstAttribute="centerY" secondItem="nky-bC-f4K" secondAttribute="centerY" id="z1B-vv-Mcs"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="NOTIFICATIONS" id="eNV-Jr-YxI">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="Z0s-dH-mZZ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kgO-QJ-WcF">
+                                <rect key="frame" x="20" y="9" width="26" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="icons8-back-52"/>
+                                <connections>
+                                    <action selector="backButtonAction:" destination="W64-ll-Shc" eventType="touchUpInside" id="cdA-Rt-amc"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="backButtonAction:" destination="KCP-um-AL2" id="jlB-Fg-jc4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DcL-IK-bfu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-6956" y="98"/>
+        </scene>
         <!--PROFILE-->
         <scene sceneID="wn0-B0-I2t">
             <objects>
@@ -2615,7 +2685,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Btq-4q-Gea">
-                                <rect key="frame" x="10" y="192" width="394" height="670"/>
+                                <rect key="frame" x="10" y="182" width="394" height="714"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DXK-jH-YlQ">
                                     <size key="itemSize" width="138" height="117"/>
@@ -2710,8 +2780,7 @@
                         <viewLayoutGuide key="safeArea" id="zeD-qI-Zin"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="zeD-qI-Zin" firstAttribute="bottom" secondItem="Btq-4q-Gea" secondAttribute="bottom" id="97C-V8-ZVD"/>
-                            <constraint firstItem="Btq-4q-Gea" firstAttribute="top" secondItem="QyN-xV-tHF" secondAttribute="bottom" constant="10" id="9H1-R5-S9t"/>
+                            <constraint firstItem="Btq-4q-Gea" firstAttribute="top" secondItem="QyN-xV-tHF" secondAttribute="bottom" id="9H1-R5-S9t"/>
                             <constraint firstItem="zeD-qI-Zin" firstAttribute="trailing" secondItem="ykg-61-xCV" secondAttribute="trailing" constant="20" id="CEG-id-ttr"/>
                             <constraint firstItem="ykg-61-xCV" firstAttribute="bottom" secondItem="zeD-qI-Zin" secondAttribute="bottom" constant="-10" id="CrX-PS-PmX"/>
                             <constraint firstItem="6f8-Yk-tMr" firstAttribute="top" secondItem="zeD-qI-Zin" secondAttribute="top" constant="10" id="KtB-jV-KaS"/>
@@ -2723,6 +2792,7 @@
                             <constraint firstItem="6f8-Yk-tMr" firstAttribute="centerX" secondItem="zeD-qI-Zin" secondAttribute="centerX" id="tqy-yc-3ZC"/>
                             <constraint firstItem="QyN-xV-tHF" firstAttribute="top" secondItem="6f8-Yk-tMr" secondAttribute="bottom" constant="10" id="wbO-ah-tbZ"/>
                             <constraint firstItem="zeD-qI-Zin" firstAttribute="trailing" secondItem="6f8-Yk-tMr" secondAttribute="trailing" constant="10" id="wiS-oI-QB7"/>
+                            <constraint firstAttribute="bottom" secondItem="Btq-4q-Gea" secondAttribute="bottom" id="yAb-L6-Rdq"/>
                             <constraint firstItem="ykg-61-xCV" firstAttribute="leading" secondItem="zeD-qI-Zin" secondAttribute="leading" constant="20" id="zRW-2d-ooZ"/>
                         </constraints>
                     </view>
@@ -2742,6 +2812,7 @@
                         <outlet property="collectionView" destination="Btq-4q-Gea" id="RLC-dp-8Yh"/>
                         <outlet property="saveButton" destination="ykg-61-xCV" id="eZ9-Wo-OOT"/>
                         <outlet property="searchBar" destination="QyN-xV-tHF" id="QZw-Xw-d88"/>
+                        <segue destination="KCP-um-AL2" kind="show" id="krX-9W-bSv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KlM-fm-uq9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2804,6 +2875,7 @@
         <image name="icons8-back-52" width="26" height="26"/>
         <image name="icons8-check-mark-48" width="24" height="24"/>
         <image name="menu" width="24" height="24"/>
+        <image name="notificationImage" width="738" height="414"/>
         <image name="unchecked" width="20" height="20"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
