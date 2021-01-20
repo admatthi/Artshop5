@@ -9,12 +9,12 @@
 import UIKit
 
 class NotificationPermissionViewController: UIViewController {
-
+    @IBOutlet weak var saveButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 10.0, *) {
           // For iOS 10 display notification (sent via APNS)
-
+            saveButton.layer.cornerRadius = 10
           let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
           UNUserNotificationCenter.current().requestAuthorization(
             options: authOptions,
