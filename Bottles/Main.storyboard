@@ -205,7 +205,7 @@
                                                         <constraint firstAttribute="height" constant="40" id="O9B-4h-bui"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2h-Ct-3LY">
                                                     <rect key="frame" x="117" y="311.5" width="180" height="50"/>
@@ -544,7 +544,7 @@
                                                     <constraint firstAttribute="height" constant="36" id="Bhl-Vl-NMo"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -572,7 +572,7 @@
                                                     <constraint firstAttribute="height" constant="36" id="QQE-xD-zsP"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -600,7 +600,7 @@
                                                     <constraint firstAttribute="height" constant="36" id="IoC-Q5-Z37"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -631,7 +631,7 @@
                                                             <constraint firstAttribute="height" constant="36" id="j1O-y2-mfC"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="numbersAndPunctuation"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gB3-pZ-ULZ">
                                                         <rect key="frame" x="0.0" y="0.0" width="13" height="36"/>
@@ -680,7 +680,7 @@
                                                             <constraint firstAttribute="height" constant="36" id="bIu-rw-dB2"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="numbersAndPunctuation"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjH-FX-7wk">
                                                         <rect key="frame" x="0.0" y="0.0" width="13" height="36"/>
@@ -2777,7 +2777,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="i3V-ry-SYQ"/>
                                 </constraints>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zeD-qI-Zin"/>
